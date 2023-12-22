@@ -12,11 +12,12 @@
         /*-------- Controlador obtener vistas --------*/
         public function obtener_vistas_controlador(){
             if(isset($_GET['CJ'])){
-
+                $ruta= explode("/",$_GET['CJ']);
+                $respuesta=vistasModelo::obtener_vistas_modelo($ruta[0]);
             }else{
-
+                $respuesta="login";
             }
-            return $respuesta
+            return $respuesta;
         }
 
     }
