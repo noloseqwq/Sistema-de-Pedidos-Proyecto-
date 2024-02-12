@@ -1,5 +1,5 @@
 <?php
-    const SERVER_URL="http://localhost/Sistema-de-Pedidos/";
+    const SERVER_URL="http://localhost/Sistema-de-pedidos-Proyecto-/";
 
     const COMPANY="SISTEMA DE PEDIDOS";
 

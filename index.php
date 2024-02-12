@@ -4,4 +4,4 @@
     require_once "./controladores/vistasControlador.php";
 
     $plantilla = new vistasControlador();
-    $plantilla-> obtener_platilla_controlador();
+    $plantilla-> obtener_plantilla_controlador();

@@ -31,38 +31,33 @@
                 </li>
 
                 <li>
-                    <a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Items <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
-                            <a href="item-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar item</a>
+                            <a href="item-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Pedidos</a>
                         </li>
                         <li>
-                            <a href="item-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de items</a>
+                            <a href="item-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Pedidos</a>
                         </li>
                         <li>
-                            <a href="item-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar item</a>
+                            <a href="item-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar Pedidos</a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="#" class="nav-btn-submenu"><i class="fas fa-file-invoice-dollar fa-fw"></i> &nbsp; Préstamos <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-btn-submenu"><i class="fas fa-box fa-fw"></i> &nbsp; Productos <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
-                            <a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo préstamo</a>
+                            <a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Productos</a>
                         </li>
                         <li>
-                            <a href="reservation-reservation.html"><i class="far fa-calendar-alt fa-fw"></i> &nbsp; Reservaciones</a>
+                            <a href="reservation-reservation.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Productos</a>
                         </li>
                         <li>
-                            <a href="reservation-pending.html"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Préstamos</a>
+                            <a href="reservation-pending.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar Producto</a>
                         </li>
-                        <li>
-                            <a href="reservation-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Finalizados</a>
-                        </li>
-                        <li>
-                            <a href="reservation-search.html"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; Buscar por fecha</a>
-                        </li>
+                        
                     </ul>
                 </li>
 
