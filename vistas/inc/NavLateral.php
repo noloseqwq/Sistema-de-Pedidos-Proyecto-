@@ -34,7 +34,7 @@
                     <a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
-                            <a href="item-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Pedidos</a>
+                            <a href="item-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Pedido</a>
                         </li>
                         <li>
                             <a href="item-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Pedidos</a>
@@ -49,7 +49,7 @@
                     <a href="#" class="nav-btn-submenu"><i class="fas fa-box fa-fw"></i> &nbsp; Productos <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
-                            <a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Productos</a>
+                            <a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Producto</a>
                         </li>
                         <li>
                             <a href="reservation-reservation.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Productos</a>
