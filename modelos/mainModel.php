@@ -122,6 +122,19 @@ class mainModel
         }
 
         
+        $ci=0;
+        for($i=$pagina; $i<=$Npaginas; $i++){
+            if($ci>=$botones){
+                break;
+            }
+
+            if($pagina==$i){
+                $tabla.='<li class="page-item "><a class="page-link active" href="'.$url.$i.'/">'.$i.'</a></li>';
+            }else{
+                $tabla.='<li class="page-item "><a class="page-link" href="'.$url.$i.'/">'.$i.'</a></li>';
+            }
+            $ci++;
+        }
 
         if ($pagina == $Npaginas) {
             $tabla .= '<li class="page-item disabled"><a class="page-link"><i class="fas fa-angles-right"></i></a></li>';
