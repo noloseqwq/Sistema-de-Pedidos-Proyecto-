@@ -1,6 +1,6 @@
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO PRÉSTAMO
+        <i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO PEDIDO
     </h3>
     <p class="text-justify">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
@@ -11,10 +11,10 @@
 <div class="container-fluid">
     <div class="container-fluid form-neon">
         <div class="container-fluid">
-            <p class="text-center roboto-medium">AGREGAR CLIENTE O ITEMS</p>
+            <p class="text-center roboto-medium">AGREGAR CLIENTE O PRODUCTOS</p>
             <p class="text-center">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCliente"><i class="fas fa-user-plus"></i> &nbsp; Agregar cliente</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar producto</button>
             </p>
             <div>
                 <span class="roboto-medium">CLIENTE:</span>
