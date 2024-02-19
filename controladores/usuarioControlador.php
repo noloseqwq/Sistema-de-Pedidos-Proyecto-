@@ -8,4 +8,8 @@
 
     class usuarioControlador extends usuarioModelo {
 
+        /*-------- Controlador agregar usuario --------*/
+        public function agregar_usuario_controlador(){
+
+        }
     }
