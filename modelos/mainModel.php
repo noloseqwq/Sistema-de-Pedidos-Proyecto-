@@ -6,8 +6,7 @@ if ($peticionAjax) {
     require_once "./config/SERVER.php";
 }
 
-class mainModel
-{
+class mainModel{
 
     /*-------- Funcion para conectar la BD --------*/
     protected static function conectar(){
@@ -84,6 +83,7 @@ class mainModel
         $cadena = str_ireplace("::", "", $cadena);
         $cadena = stripslashes($cadena);
         $cadena = trim($cadena);
+        return $cadena;
     }
 
 
