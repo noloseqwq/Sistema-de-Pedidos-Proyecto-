@@ -5,7 +5,7 @@
             <i class="far fa-times-circle show-nav-lateral"></i>
             <img src="<?php echo SERVER_URL;?>vistas/assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
             <figcaption class="roboto-medium text-center">
-                Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+                <?php echo $_SESSION['nombre_sdp']." ". $_SESSION['apellido_sdp'];  ?><br><small class="roboto-condensed-light"><?php echo $_SESSION['usuario_sdp'];  ?></small>
             </figcaption>
         </figure>
         <div class="full-box nav-lateral-bar"></div>

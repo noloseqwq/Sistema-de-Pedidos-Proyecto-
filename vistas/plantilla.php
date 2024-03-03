@@ -19,6 +19,14 @@
     if ($vistas == "login" || $vistas == "404") {
         require_once "./vistas/contenidos/" . $vistas . "-CJ.php";
     } else {
+        session_start(['name' => 'SDP']);
+        
+        require_once "./controladores/loginControlador.php";
+        $lc = new loginControlador();
+        if(!isset($_SESSION['token_sdp']) || !isset($_SESSION['usuario_sdp']) || !isset($_SESSION['privilegio_sdp']) || !isset($_SESSION['id_sdp'])){
+            echo $lc -> forzar_cierre_sesion_controlador();
+            exit();
+        }
     ?>
         <!-- Main container -->
         <main class="full-box main-container">
