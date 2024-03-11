@@ -12,7 +12,7 @@
         <nav class="full-box nav-lateral-menu">
             <ul>
                 <li>
-                    <a href="<?php echo SERVER_URL; ?>home/"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio </a>
+                    <a href="<?php echo SERVER_URL; ?>home/"><i class="fas fa-home fa-fw"></i> &nbsp; Inicio </a>
                 </li>
 
                 <li>
@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Pedidos <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
                             <a href="<?php echo SERVER_URL; ?>order-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Pedido</a>
@@ -46,7 +46,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class="nav-btn-submenu"><i class="fas fa-box fa-fw"></i> &nbsp; Productos <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-btn-submenu"><i class="fas fa-boxes fa-fw"></i> &nbsp; Productos <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
                             <a href="<?php echo SERVER_URL; ?>product-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Producto</a>
@@ -60,9 +60,10 @@
                         
                     </ul>
                 </li>
-
+<?php if($_SESSION['privilegio_sdp']==1){
+    ?>
                 <li>
-                    <a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-btn-submenu"><i class="fas  fa-user fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
                     <ul>
                         <li>
                             <a href="<?php echo SERVER_URL; ?>user-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo usuario</a>
@@ -75,7 +76,7 @@
                         </li>
                     </ul>
                 </li>
-
+<?php }?>
                 <li>
                     <a href="<?php echo SERVER_URL; ?>company/"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
                 </li>

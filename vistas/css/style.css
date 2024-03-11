@@ -28,14 +28,14 @@
 :root{
 	--color-one: #F5F5F5;
 	--color-two: #24292E;
-	--color-three: #EC5252;
-	/*--color-three: #0366D6;*/
+	/*--color-three: #EC5252;*/
+	--color-three: #0366D6;
 
 	--form-color: #14111A;
 
 	--accent-color: #253556;
 	/*--accent-color: #455A64;*/
-    --border-color: #D8D8D8;
+    --border-color: #c9c8c8;
 }
 
 body,html{
@@ -255,7 +255,7 @@ table form{
 	left: 0;
 	z-index: 1;
 	transition: all .2s ease-in-out;
-	background-image: url('../assets/img/nav-font.jpg');
+	background-color: #24292E;
 	background-position: center center;
 	background-size: cover;
 }
@@ -279,7 +279,7 @@ table form{
 	width: 50%;
 	margin: 0 auto;
 	display: block;
-	border: 4px solid #FFF;
+	border: 4px solid #000000;
 	border-radius: 100%;
 }
 .nav-lateral-avatar figcaption{

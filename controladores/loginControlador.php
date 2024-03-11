@@ -25,8 +25,6 @@
                 exit();
             }
 
-
-
             /*-------- Verificando integridad de los datos--------*/ 
             if(mainModel::verificar_datos("[a-zA-Z0-9]{3,35}",$usuario)){
                 echo '<script>
@@ -96,5 +94,30 @@
             }else{ 
                 return header("Location: ".SERVER_URL."login/");
             }
+        }/*Fin del controlador */
+
+        /*--------Controlador para  cierre de sesion al sisrema--------*/
+        public function cerrar_sesion_controlador(){
+            session_start(['name'=>'SDP']);
+            $token=mainModel::decryption($_POST['token']);
+            $usuario=mainModel::decryption($_POST['usuario']);
+
+            if($token==$_SESSION['token_sdp'] && $usuario==$_SESSION['usuario_sdp']){
+                session_unset();
+                session_destroy();
+                $alerta=[
+                    "Alerta"=> "redireccionar",
+                    "URL"=> SERVER_URL."login/",
+                ];
+            }else{
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No se puedo cerrar la sesion",
+                    "Tipo"=>"error"
+                ];
+            }
+            echo json_encode($alerta);
+            
         }/*Fin del controlador */
     }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title><?php echo COMPANY; ?></title>
-    <?php include "./vistas/inc/Link.php"; ?>
+    <?php include "./vistas/inc/Link.php";?>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     require_once "./controladores/vistasControlador.php";
     $IV = new vistasControlador();
 
-    $vistas = $IV->obtener_vistas_controlador();
+    $vistas = $IV->obtener_vistas_controlador(); // IV = Instancias a las vistas
 
     if ($vistas == "login" || $vistas == "404") {
         require_once "./vistas/contenidos/" . $vistas . "-CJ.php";
@@ -43,6 +43,7 @@
             </section>
         </main>
     <?php
+    include"./vistas/inc/logOut.php";
     }
     include "./vistas/inc/Script.php";
     ?>

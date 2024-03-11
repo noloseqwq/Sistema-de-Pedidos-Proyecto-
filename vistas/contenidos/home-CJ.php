@@ -21,7 +21,7 @@
     <a href="<?php echo SERVER_URL; ?>order-list/" class="tile">
         <div class="tile-tittle">Pedidos</div>
         <div class="tile-icon">
-            <i class="fas fa-pallet fa-fw"></i>
+            <i class="fas fa-clipboard-list fa-fw"></i>
             <p>9 Registrados</p>
         </div>
     </a>
@@ -29,19 +29,20 @@
     <a href="<?php echo SERVER_URL; ?>product-list/" class="tile">
         <div class="tile-tittle">Productos</div>
         <div class="tile-icon">
-            <i class="fas fa-box fa-fw"></i>
+            <i class="fas fa-boxes fa-fw"></i>
             <p>30 Registradas</p>
         </div>
     </a>
-
+    <?php if($_SESSION['privilegio_sdp']==1){
+    ?>
     <a href="<?php echo SERVER_URL; ?>user-list/" class="tile">
         <div class="tile-tittle">Usuarios</div>
         <div class="tile-icon">
-            <i class="fas fa-user-secret fa-fw"></i>
+            <i class="fas fa-user fa-fw"></i>
             <p>50 Registrados</p>
         </div>
     </a>
-
+    <?php }?>
     <a href="<?php echo SERVER_URL; ?>company/" class="tile">
         <div class="tile-tittle">Empresa</div>
         <div class="tile-icon">
@@ -50,3 +51,4 @@
         </div>
     </a>
 </div>
+
