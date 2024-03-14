@@ -115,10 +115,11 @@ class mainModel{
         $tabla = '<nav aria-label="Page navigation example"><ul class="pagination justify-content-center">';
 
         if ($pagina == 1) {
-            $tabla .= '<li class="page-item disabled"><a class="page-link"><i class="fas fa-angles-left"></i></a></li>';
+            $tabla .= '<li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-left"></i></a></li>';
         } else {
-            $tabla .= '<li class="page-item "><a class="page-link" href="'.$url.'1/"><i class="fas fa-angles-left"></i></a></li>
-            <li class="page-item "><a class="page-link" href="'.$url.($pagina-1).'/"></a>Anterior</li>';
+            $tabla .= '<li class="page-item "><a class="page-link" href="'.$url.'1/">
+            <i class="fas fa-angle-double-left"></i></a></li>
+            <li class="page-item "><a class="page-link" href="'.$url.($pagina-1).'/"><i class="fas fa-angle-left"></i></a></li>';
         }
 
         
@@ -137,11 +138,11 @@ class mainModel{
         }
 
         if ($pagina == $Npaginas) {
-            $tabla .= '<li class="page-item disabled"><a class="page-link"><i class="fas fa-angles-right"></i></a></li>';
+            $tabla .= '<li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-right"></i></a></li>';
         } else {
             $tabla .= '
-            <li class="page-item "><a class="page-link" href="'.$url.($pagina+1).'/"></a>Siguiente</li>
-            <li class="page-item "><a class="page-link" href="'.$url.$Npaginas.'/"><i class="fas fa-angles-right"></i></a></li>
+            <li class="page-item "><a class="page-link" href="'.$url.($pagina+1).'/"><i class="fas fa-angle-right"></i></a></li>
+            <li class="page-item "><a class="page-link" href="'.$url.$Npaginas.'/"> <i class="fas fa-angle-double-right"></i></a></li>
             ';
         }
 

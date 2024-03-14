@@ -20,6 +20,8 @@
         require_once "./vistas/contenidos/" . $vistas . "-CJ.php";
     } else {
         session_start(['name' => 'SDP']);
+
+        $pagina=explode("/", $_GET['CJ']);
         
         require_once "./controladores/loginControlador.php";
         $lc = new loginControlador();

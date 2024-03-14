@@ -19,4 +19,10 @@ class usuarioModelo extends mainModel{
 
         return $sql;
     }
+    /*-------- Modelo eliminar usuario --------*/
+
+    protected static function eliminar_usuario_modelo(){
+        
+    }
+
 }

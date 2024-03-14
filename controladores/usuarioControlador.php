@@ -20,7 +20,7 @@
             
             $privilegio=mainModel::limpiar_cadena($_POST['usuario_privilegio_reg']);
         
-        /*-------- comprobar campos vacios --------*/
+            /*-------- comprobar campos vacios --------*/
         
             if($CI == "" || $nombre == "" || $apellido == "" ||$usuario == "" ||$email == "" ||$clave1 == "" || $clave2 == ""){
                 $alerta=[
@@ -191,4 +191,104 @@
             }
             echo json_encode($alerta);
         }/* Fin de del controlador */
+
+        /*-------- Controlador paginar usuario --------*/
+        public function paginador_usuario_controlador($pagina,$registros, $privilegio, $id,$url,$busqueda){
+            $pagina=mainModel::limpiar_cadena($pagina);
+            $registros=mainModel::limpiar_cadena($registros);
+            $privilegio=mainModel::limpiar_cadena($privilegio);
+            $id=mainModel::limpiar_cadena($id);
+
+            $url=mainModel::limpiar_cadena($url);
+            $url=SERVER_URL.$url."/";
+
+            $busqueda=mainModel::limpiar_cadena($busqueda);
+            $tabla="";
+            
+            //Operador ternario que funciona como una condicional doble
+            $pagina= (isset($pagina) && $pagina>0) ? (int) $pagina : 1 ;
+            $inicio= ($pagina>0) ? (($pagina*$registros)-$registros) : 0 ;
+
+            if(isset($busqueda) && $busqueda!=""){
+                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM usuarios WHERE ((id_usuario!='$id' AND id_usuario!='1')AND (CI LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' OR email LIKE '%$busqueda%')) ORDER BY nombre ASC LIMIT $inicio, $registros";
+            }else{
+                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM usuarios WHERE id_usuario!='$id' AND id_usuario!='1' ORDER BY nombre ASC LIMIT $inicio, $registros";
+            }
+
+            $conexion= mainModel::conectar();
+
+            $datos= $conexion->query($consulta);
+
+            $datos= $datos-> fetchAll();
+
+            $total= $conexion->query("SELECT FOUND_ROWS()");
+            $total= (int) $total->fetchColumn();
+
+            $Npaginas= ceil($total/$registros);
+
+            $tabla.='<div class="table-responsive">
+            <table class="table table-dark table-sm">
+                <thead>
+                    <tr class="text-center roboto-medium">
+                        <th>#</th>
+                        <th>DNI</th>
+                        <th>NOMBRE</th>
+                        <th>USUARIO</th>
+                        <th>EMAIL</th>
+                        <th>ACTUALIZAR</th>
+                        <th>ELIMINAR</th>
+                    </tr>
+                </thead>
+                <tbody>';
+            if($total>=1 && $pagina<=$Npaginas){
+                $contador=$inicio+1;
+                $reg_inicio=$inicio+1;
+                foreach($datos as $rows){
+                    $tabla.='<tr class="text-center">
+                    <td>'.$contador.'</td>
+                    <td>'.$rows['CI'].'</td>
+                    <td>'.$rows['nombre'].' '.$rows['apellido'].'</td>
+
+                    <td>'.$rows['usuario'].'</td>
+                    <td>'.$rows['email'].'</td>
+                    <td>
+                        <a href="'.SERVER_URL.'user-update/'.mainModel::encryption($rows['id_usuario']).'/" class="btn btn-success">
+                            <i class="fas fa-sync-alt"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
+                        <input type="hidden" name="id_usuario_del" value="'.mainModel::encryption($rows['id_usuario']).'">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>';
+                $contador++;
+                }
+                $reg_final=$contador-1;
+            }else{
+                if($total>=1){
+                    $tabla.='<tr class="text-center"> <td colspan="7">
+                    <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado</a>
+                    </td> </tr>';
+                }else{
+
+                    $tabla.='<tr class="text-center"> <td colspan="9">No hay resgistros en el sistema</td> </tr>';
+                }
+            }
+            $tabla.='</tbody>
+                    </table>
+                    </div>';
+            if($total>=1 && $pagina<=$Npaginas){
+                $tabla.='<p class=" text-right">Mostrando Usuarios '. $reg_inicio.' al '.$reg_final.' de un total de '. $total .' </p>';
+            }
+            if($total>=1 && $pagina<=$Npaginas){
+                $tabla.=mainModel::paginador_tablas($pagina, $Npaginas, $url, 7);
+            }
+            return $tabla;
+
+        }/* Fin de del controlador */
+
     }
