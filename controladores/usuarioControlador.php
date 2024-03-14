@@ -281,14 +281,80 @@
             $tabla.='</tbody>
                     </table>
                     </div>';
+
             if($total>=1 && $pagina<=$Npaginas){
                 $tabla.='<p class=" text-right">Mostrando Usuarios '. $reg_inicio.' al '.$reg_final.' de un total de '. $total .' </p>';
-            }
-            if($total>=1 && $pagina<=$Npaginas){
                 $tabla.=mainModel::paginador_tablas($pagina, $Npaginas, $url, 7);
             }
             return $tabla;
 
         }/* Fin de del controlador */
 
+        /*-------- Controlador eliminar usuario --------*/
+        public function eliminar_usuario_controlador(){
+            
+            /* recibiendo id del usuario*/
+            $id=mainModel::decryption($_POST['id_usuario_del']);
+            $id=mainModel::limpiar_cadena($id);
+
+            /* comprobando el usuario principal*/
+            if($id==1){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No se puede eliminar el usuario principal del sistema",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            
+            /* comprobando el usuario en BD*/
+            $check_usuario = mainModel::ejecutar_consulta_simple("SELECT id_usuario FROM usuarios WHERE id_usuario='$id'");
+            if($check_usuario->rowCount()<=0){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"El usuario que intenta eliminar no existe en el sistema",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            
+            /* comprobando privilegios */
+            session_start(['name'=> 'SDP']);
+            if($_SESSION['privilegio_sdp']!=1){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No tienes Autorizacion para eliminar usuarios",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            $eliminar_usuario= usuarioModelo::eliminar_usuario_modelo($id);
+
+            if($eliminar_usuario-> rowCount()==1){
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Usuario Eliminado",
+                    "Texto"=>"El usuario ha sido eliminado",
+                    "Tipo"=>"success"
+                ];
+            }else{
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No se a podido eliminar el usuario",
+                    "Tipo"=>"error"
+                ];
+                
+            }
+            echo json_encode($alerta);
+
+
+        }/* Fin de del controlador */
     }

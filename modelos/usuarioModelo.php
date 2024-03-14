@@ -21,8 +21,13 @@ class usuarioModelo extends mainModel{
     }
     /*-------- Modelo eliminar usuario --------*/
 
-    protected static function eliminar_usuario_modelo(){
-        
+    protected static function eliminar_usuario_modelo($id){
+        $sql= mainModel::conectar()->prepare("DELETE FROM usuarios WHERE id_usuario=:ID");
+
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+
+        return $sql;
     }
 
 }
