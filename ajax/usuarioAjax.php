@@ -2,7 +2,7 @@
     $peticionAjax = true;
     require_once "../config/APP.php";
 
-    if(isset($_POST['usuario_CI_reg']) || isset($_POST['id_usuario_del'])){
+    if(isset($_POST['usuario_CI_reg']) || isset($_POST['id_usuario_del']) || isset($_POST['id_usuario_up'])){
 
         /*-------- Intancia al controlador --------*/
         require_once "../controladores/usuarioControlador.php";
@@ -16,6 +16,10 @@
         /*-------- Eliminar usuario --------*/
         if(isset($_POST['id_usuario_del'])){
             echo $ins_usuario->eliminar_usuario_controlador();
+        }
+        /*-------- Actualizar usuario --------*/
+        if(isset($_POST['id_usuario_up'])){
+            echo $ins_usuario->actualizar_usuario_controlador();
         }
     }else{
         session_start(['name' => 'SDP']);
