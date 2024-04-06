@@ -15,11 +15,11 @@
 
 <!-- Bootstrap Material Design V4.0 -->
 <script src="<?php echo SERVER_URL; ?>vistas/js/bootstrap-material-design.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('body').bootstrapMaterialDesign();
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
 <script>
     const pressed = [];
     const secretCode = "elao";

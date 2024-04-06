@@ -3,9 +3,6 @@
     <h3 class="text-left">
         <i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE
     </h3>
-    <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem odit amet asperiores quis minus, dolorem repellendus optio doloremque error a omnis soluta quae magnam dignissimos, ipsam, temporibus sequi, commodi accusantium!
-    </p>
 </div>
 
 <div class="container-fluid">
@@ -26,7 +23,7 @@
 <div class="container-fluid">
     <form action="" class="form-neon" autocomplete="off">
         <fieldset>
-            <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
+            <legend class=" text-center"><i class="fas fa-user"></i> &nbsp; Información básica</legend>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-6">

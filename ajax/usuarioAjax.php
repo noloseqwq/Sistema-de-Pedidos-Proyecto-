@@ -14,9 +14,9 @@
         } 
         
         /*-------- Eliminar usuario --------*/
-        if(isset($_POST['id_usuario_del'])){
-            echo $ins_usuario->eliminar_usuario_controlador();
-        }
+            if(isset($_POST['id_usuario_del'])){
+                echo $ins_usuario->eliminar_usuario_controlador();
+            }
         /*-------- Actualizar usuario --------*/
         if(isset($_POST['id_usuario_up'])){
             echo $ins_usuario->actualizar_usuario_controlador();

@@ -11,12 +11,10 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 
 ?>
 <div class="full-box page-header">
-	<h3 class="text-left">
+	<h3 class="text-left text-center">
 		<i class="fas fa-sync-alt fa-fw"></i> &nbsp; ACTUALIZAR USUARIO
 	</h3>
-	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
-	</p>
+	
 </div>
 <?php if($_SESSION['privilegio_sdp']==1){ ?>
 <div class="container-fluid">
@@ -40,14 +38,14 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 		$ins_usuario = new usuarioControlador();
 
 		$datos_usuario=$ins_usuario->datos_usuario_controlador("Unico",$pagina[1]);
-
+	
 	if($datos_usuario->rowCount()==1){
 		$campos= $datos_usuario->fetch();
 	?>
 	<form class="form-neon FormularioAjax" action="<?php echo SERVER_URL; ?>ajax/usuarioAjax.php" method="POST" data-form="update" autocomplete="off">
 	<input type="hidden" name="id_usuario_up" value="<?php echo $pagina[1] ?>">
-		<fieldset>
-			<legend><i class="far fa-address-card"></i> &nbsp; Información personal</legend>
+		<fieldset>	
+			<legend class="text-center"><i class="far fa-address-card"></i> &nbsp; Información personal</legend>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12 col-md-4">

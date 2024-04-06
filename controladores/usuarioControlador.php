@@ -198,6 +198,7 @@
             $registros=mainModel::limpiar_cadena($registros);
             $privilegio=mainModel::limpiar_cadena($privilegio);
             $id=mainModel::limpiar_cadena($id);
+            
 
             $url=mainModel::limpiar_cadena($url);
             $url=SERVER_URL.$url."/";
@@ -366,9 +367,9 @@
             $id=mainModel::limpiar_cadena($id);
             
             return usuarioModelo::datos_usuario_modelo($tipo,$id);
-        }/* Fin de del controlador */
+        }/* Fin de del controlador */   
 
-            /*-------- controlador datos usuario --------*/
+            /*-------- actualizar datos usuario --------*/
         public static function actualizar_usuario_controlador(){
             
             //Recibiendo id
@@ -611,7 +612,7 @@
             /*-------- Preparando datos para enviarlos al modelo --------*/
             
             $datos_usuario_up=[
-                "Usuario"=>$usuario,
+                "Usuario"=>$usuario,    
                 "Nombre"=>$nombre,
                 "Apellido"=>$apellido,
                 "CI"=>$CI,

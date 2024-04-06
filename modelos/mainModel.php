@@ -27,7 +27,7 @@ class mainModel{
     /*-------- Encriptar cadenas --------*/
     public static function encryption($string){
         $output = FALSE;
-        $key = hash('sha256', SECRET_KEY);
+        $key = hash('sha256', SECRET_KEY);// 
         $iv = substr(hash('sha256', SECRET_IV), 0, 16);
         $output = openssl_encrypt($string, METHOD, $key, 0, $iv);
         $output = base64_encode($output);

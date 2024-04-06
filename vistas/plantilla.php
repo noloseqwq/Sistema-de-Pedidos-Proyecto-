@@ -13,15 +13,16 @@
     $peticionAjax = false;
     require_once "./controladores/vistasControlador.php";
     $IV = new vistasControlador();
-
+    
     $vistas = $IV->obtener_vistas_controlador(); // IV = Instancias a las vistas
-
+    
     if ($vistas == "login" || $vistas == "404") {
         require_once "./vistas/contenidos/" . $vistas . "-CJ.php";
     } else {
         session_start(['name' => 'SDP']);
-
+        
         $pagina=explode("/", $_GET['CJ']);
+        
         
         require_once "./controladores/loginControlador.php";
         $lc = new loginControlador();

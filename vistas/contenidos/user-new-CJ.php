@@ -6,12 +6,10 @@ if ($_SESSION['privilegio_sdp'] != 1) {
 ?>
 <!-- Page header -->
 <div class="full-box page-header">
-	<h3 class="text-left">
+	<h3 class="text-left text-center">
 		<i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO USUARIO
 	</h3>
-	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
-	</p>
+	
 </div>
 
 <div class="container-fluid">
@@ -32,7 +30,7 @@ if ($_SESSION['privilegio_sdp'] != 1) {
 <div class="container-fluid">
 	<form class="form-neon FormularioAjax" action="<?php echo SERVER_URL; ?>ajax/usuarioAjax.php" method="POST" data-form="save" autocomplete="off">
 		<fieldset>
-			<legend><i class="far fa-address-card"></i> &nbsp; Información de Registro</legend>
+			<legend class="text-center"><i class="far fa-address-card"></i> &nbsp; Información de Registro</legend>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12 col-md-4">
@@ -105,7 +103,7 @@ if ($_SESSION['privilegio_sdp'] != 1) {
 		<p class="text-center" style="margin-top: 40px;">
 			<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 			&nbsp; &nbsp;
-			<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+			<button type="submit" class="btn btn-raised btn-info btn-sm "><i class="far fa-save "></i> &nbsp; GUARDAR</button>
 		</p>
 	</form>
 </div>

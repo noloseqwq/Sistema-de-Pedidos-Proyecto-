@@ -6,12 +6,10 @@ if ($_SESSION['privilegio_sdp'] != 1) {
 ?>
 <!-- Page header -->
 <div class="full-box page-header">
-	<h3 class="text-left">
+	<h3 class="text-left text-center">
 		<i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR USUARIO
 	</h3>
-	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
-	</p>
+	
 </div>
 
 <div class="container-fluid">
