@@ -34,7 +34,7 @@
             }
 
             /*-------- Verificando integridad de los datos --------*/
-            if(mainModel::verificar_datos("[0-9-]{6,20}",$CI)){
+            if(mainModel::verificar_datos("[0-9\-]{6,20}",$CI)){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
@@ -232,8 +232,8 @@
                 <thead>
                     <tr class="text-center roboto-medium">
                         <th>#</th>
-                        <th>DNI</th>
-                        <th>NOMBRE</th>
+                        <th>CEDÚLA</th>
+                        <th>NOMBRE Y APELLIDO</th>
                         <th>USUARIO</th>
                         <th>EMAIL</th>
                         <th>ACTUALIZAR</th>

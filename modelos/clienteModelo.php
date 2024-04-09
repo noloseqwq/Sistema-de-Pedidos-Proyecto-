@@ -18,9 +18,7 @@ class clienteModelo extends mainModel{
 
         return $sql;
 
-
-
-    }
+    }/*Fin controlador*/
 
 
 }

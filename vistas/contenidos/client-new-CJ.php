@@ -47,19 +47,19 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="cliente_telefono" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" pattern="[0-9()+]{11,12}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="12">
+                            <input type="text" pattern="[0-9\-]{11,12}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="12">
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="cliente_razon" class="bmd-label-floating">Razon Social</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{5,50}" class="form-control" name="cliente_razon_reg" id="cliente_razon" maxlength="50">
+                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#\- ]{5,50}" class="form-control" name="cliente_razon_reg" id="cliente_razon" maxlength="50">
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="form-group">
                             <label for="cliente_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{5,50}" class="form-control" name="cliente_direccion_reg" id="cliente_direccion" maxlength="50">
+                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#\- ]{5,50}" class="form-control" name="cliente_direccion_reg" id="cliente_direccion" maxlength="50">
                         </div>
                     </div>
                 </div>
