@@ -21,39 +21,45 @@
 
 <!-- Content here-->
 <div class="container-fluid">
-    <form action="" class="form-neon" autocomplete="off">
+    <form class="form-neon FormularioAjax" action="<?php echo SERVER_URL; ?>ajax/clienteAjax.php" method="POST" data-form="save" autocomplete="off">
         <fieldset>
             <legend class=" text-center"><i class="fas fa-user"></i> &nbsp; Información básica</legend>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="cliente_dni" class="bmd-label-floating">DNI</label>
-                            <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+                            <label for="cliente_CI" class="bmd-label-floating">Cedúla de Identidad</label>
+                            <input type="text" pattern="[0-9\-]{6,20}" class="form-control" name="cliente_CI_reg" id="cliente_CI" maxlength="20">
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_nombre_reg" id="cliente_nombre" maxlength="40">
+                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}" class="form-control" name="cliente_nombre_reg" id="cliente_nombre" maxlength="35">
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="cliente_apellido" class="bmd-label-floating">Apellido</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="35">
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="cliente_telefono" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="20">
+                            <input type="text" pattern="[0-9()+]{11,12}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="12">
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
+                            <label for="cliente_razon" class="bmd-label-floating">Razon Social</label>
+                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{5,50}" class="form-control" name="cliente_razon_reg" id="cliente_razon" maxlength="50">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
                             <label for="cliente_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,150}" class="form-control" name="cliente_direccion_reg" id="cliente_direccion" maxlength="150">
+                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{5,50}" class="form-control" name="cliente_direccion_reg" id="cliente_direccion" maxlength="50">
                         </div>
                     </div>
                 </div>
