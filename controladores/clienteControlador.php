@@ -196,7 +196,7 @@
                         if($privilegio == 1 || $privilegio == 2){
                             $tabla.='<th>ACTUALIZAR</th>';
                         }
-                        if($privilegio == 1 || $privilegio == 2){
+                        if($privilegio == 1 ){
                             $tabla.='<th>ELIMINAR</th>';
                         }
                         
@@ -215,21 +215,29 @@
                     <td>'.$rows['cliente_nombre'].' '.$rows['cliente_apellido'].'</td>
 
                     <td>'.$rows['cliente_tlf'].'</td>
-                    <td>'.$rows['cliente_direccion'].'</td>
-                    <td>
-                        <a href="'.SERVER_URL.'user-update/'.mainModel::encryption($rows['id_cliente']).'/" class="btn btn-success">
+                    <td>'.$rows['cliente_direccion'].'</td>';
+
+                    if($privilegio == 1 || $privilegio == 2){
+                        $tabla.='<td>
+                        <a href="'.SERVER_URL.'client-update/'.mainModel::encryption($rows['id_cliente']).'/" class="btn btn-success">
                             <i class="fas fa-sync-alt"></i>
                         </a>
-                    </td>
-                    <td>
-                        <form class="FormularioAjax" action="'.SERVER_URL.'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
-                        <input type="hidden" name="id_usuario_del" value="'.mainModel::encryption($rows['id_cliente']).'">
-                            <button type="submit" class="btn btn-warning">
+                    </td>';
+                    }
+                    if($privilegio == 1 ){
+                        $tabla.='<td>
+                        <form class="FormularioAjax" data-form="delete" autocomplete="off">
+                        <input type="hidden" name="id_cliente_del" value="'.mainModel::encryption($rows['id_cliente']).'">
+                            <button tyoAjax" action="'.SERVER_URL.'ajax/clienteAjax.php" method="POSTpe="submit" class="btn btn-warning">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
-                    </td>
-                </tr>';
+                        </td>';
+                    }
+                
+                    
+                    
+                $tabla.='</tr>';
                 $contador++;
                 }
                 $reg_final=$contador-1;

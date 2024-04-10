@@ -20,7 +20,7 @@
 </div>
 
 <!-- Content here-->
-<div class="container-fluid">
+
 <div class="container-fluid">
 				<?php
 					require_once "./controladores/clienteControlador.php";
@@ -30,5 +30,4 @@
 
 
 				?>
-			</div>
 </div>
