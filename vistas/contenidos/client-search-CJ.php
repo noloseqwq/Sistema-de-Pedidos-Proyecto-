@@ -72,7 +72,7 @@
 					require_once "./controladores/clienteControlador.php";
 					$ins_clienteTab = new clienteControlador();
 					
-					echo $ins_clienteTab->paginador_cliente_controlador($pagina[1],8, $_SESSION['privilegio_sdp'],$pagina[0],"busquedad");
+					echo $ins_clienteTab->paginador_cliente_controlador($pagina[1],8, $_SESSION['privilegio_sdp'],$pagina[0],$_SESSION['busquedad_cliente']);
 
 
 				?>

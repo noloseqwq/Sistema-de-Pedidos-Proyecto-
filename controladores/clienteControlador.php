@@ -167,7 +167,7 @@
             $inicio= ($pagina>0) ? (($pagina*$registros)-$registros) : 0 ;
 
             if(isset($busqueda) && $busqueda!=""){
-                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM cliente WHERE cliente_CI LIKE '%$busqueda%' OR cliente_nombre LIKE '%$busqueda%' OR cliente_tlf LIKE '%$busqueda%' ORDER BY cliente_CI ASC LIMIT $inicio, $registros";
+                $consulta="SELECT * FROM cliente WHERE cliente_CI LIKE '%$busqueda%' OR cliente_nombre LIKE '%$busqueda%' OR cliente_tlf LIKE '%$busqueda%' ORDER BY cliente_CI ASC LIMIT $inicio, $registros";
             }else{
                 $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM cliente ORDER BY cliente_CI ASC LIMIT $inicio, $registros";
             }
@@ -175,9 +175,9 @@
             $conexion= mainModel::conectar();
 
             $datos= $conexion->query($consulta);
-
+            
             $datos= $datos-> fetchAll();
-
+            
             $total= $conexion->query("SELECT FOUND_ROWS()");
             $total= (int) $total->fetchColumn();
 
