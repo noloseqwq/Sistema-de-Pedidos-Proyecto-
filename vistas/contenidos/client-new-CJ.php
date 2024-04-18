@@ -28,8 +28,8 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="cliente_CI" class="bmd-label-floating">Cedúla de Identidad</label>
-                            <input type="text" pattern="[0-9\-]{6,20}" class="form-control" name="cliente_CI_reg" id="cliente_CI" maxlength="20">
+                            <label for="cliente_RIF" class="bmd-label-floating">RIF</label>
+                            <input type="text" pattern="[0-9\-]{6,20}" class="form-control" name="cliente_RIF_reg" id="cliente_RIF" maxlength="20">
                         </div>
                     </div>
                     <div class="col-12 col-md-6">

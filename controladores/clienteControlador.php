@@ -10,7 +10,7 @@
 
         /*-------- Controlador agregar cliente --------*/
         public function agregar_cliente_controlador(){
-            $CI=mainModel::limpiar_cadena($_POST['cliente_CI_reg']);
+            $RIF=mainModel::limpiar_cadena($_POST['cliente_RIF_reg']);
             $nombre=mainModel::limpiar_cadena($_POST['cliente_nombre_reg']);
             $apellido=mainModel::limpiar_cadena($_POST['cliente_apellido_reg']);
             $telefono=mainModel::limpiar_cadena($_POST['cliente_telefono_reg']);
@@ -19,7 +19,7 @@
 
             /*-------- comprobar campos vacios --------*/
         
-            if($CI == "" || $nombre == "" || $apellido == "" ||$telefono == "" ||$razon == "" ||$direccion == "" ){
+            if($RIF == "" || $nombre == "" || $apellido == "" ||$telefono == "" ||$razon == "" ||$direccion == "" ){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Ocurrio un error inesperado",
@@ -31,7 +31,7 @@
             }
 
             /*-------- Verificando integridad de los datos --------*/
-            if(mainModel::verificar_datos("[0-9\-]{6,20}",$CI)){
+            if(mainModel::verificar_datos("[0-9\-]{6,20}",$RIF)){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
@@ -95,9 +95,9 @@
                 exit();
             }
 
-            /*-------- Comprobando C.I --------*/
-            $check_CI = mainModel::ejecutar_consulta_simple("SELECT cliente_CI FROM cliente WHERE cliente_CI='$CI'" );
-            if($check_CI->rowCount()>0){
+            /*-------- Comprobando RIF --------*/
+            $check_RIF = mainModel::ejecutar_consulta_simple("SELECT cliente_rif FROM cliente WHERE cliente_rif='$RIF'" );
+            if($check_RIF->rowCount()>0){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
@@ -122,7 +122,7 @@
             }
 
             $datos_cliente_reg=[
-                "CI"=>$CI,
+                "RIF"=>$RIF,
                 "Nombre"=>$nombre,
                 "Apellido"=>$apellido,
                 "TLF"=>$telefono,
@@ -167,9 +167,9 @@
             $inicio= ($pagina>0) ? (($pagina*$registros)-$registros) : 0 ;
 
             if(isset($busqueda) && $busqueda!=""){
-                $consulta="SELECT * FROM cliente WHERE cliente_CI LIKE '%$busqueda%' OR cliente_nombre LIKE '%$busqueda%' OR cliente_tlf LIKE '%$busqueda%' ORDER BY cliente_CI ASC LIMIT $inicio, $registros";
+                $consulta="SELECT * FROM cliente WHERE cliente_rif LIKE '%$busqueda%' OR cliente_nombre LIKE '%$busqueda%' OR cliente_tlf LIKE '%$busqueda%' ORDER BY cliente_rif ASC LIMIT $inicio, $registros";
             }else{
-                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM cliente ORDER BY cliente_CI ASC LIMIT $inicio, $registros";
+                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM cliente ORDER BY cliente_rif ASC LIMIT $inicio, $registros";
             }
 
             $conexion= mainModel::conectar();
@@ -188,7 +188,7 @@
                 <thead>
                     <tr class="text-center roboto-medium">
                         <th>#</th>
-                        <th>CEDÚLA</th>
+                        <th>RIF</th>
                         <th>NOMBRE Y APELLIDO</th>
                         <th>TELEFONO</th>
                         <th>DIRECCIÓN</th>';
@@ -211,7 +211,7 @@
                 foreach($datos as $rows){
                     $tabla.='<tr class="text-center">
                     <td>'.$contador.'</td>
-                    <td>'.$rows['cliente_CI'].'</td>
+                    <td>'.$rows['cliente_rif'].'</td>
                     <td>'.$rows['cliente_nombre'].' '.$rows['cliente_apellido'].'</td>
 
                     <td>'.$rows['cliente_tlf'].'</td>
@@ -226,9 +226,9 @@
                     }
                     if($privilegio == 1 ){
                         $tabla.='<td>
-                        <form class="FormularioAjax" data-form="delete" autocomplete="off">
+                        <form class="FormularioAjax" action="'.SERVER_URL.'ajax/clienteAjax.php" method="POST" data-form="delete" autocomplete="off">
                         <input type="hidden" name="id_cliente_del" value="'.mainModel::encryption($rows['id_cliente']).'">
-                            <button tyoAjax" action="'.SERVER_URL.'ajax/clienteAjax.php" method="POSTpe="submit" class="btn btn-warning">
+                            <button type="submit" class="btn btn-warning">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
@@ -262,6 +262,75 @@
             return $tabla;
 
         }/* Fin de del controlador */
+        
+        /*-------- Controlador eliminar cliente --------*/
+        public function eliminar_cliente_controlador(){
+            
+            //Recuperar id del cliente
+            $id=mainModel::decryption($_POST['id_cliente_del']);
+            $id=mainModel::limpiar_cadena($id);
+
+            //Comprobar el cliente en la BD
+            $check_cliente=mainModel::ejecutar_consulta_simple("SELECT id_cliente FROM cliente WHERE id_cliente='$id'");
+            if($check_cliente->rowCount() <= 0){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"El Cliente que intenta eliminar no existe en el sistema",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            //Comprobar prestamos
+            $check_pedidos= mainModel::ejecutar_consulta_simple("SELECT id_cliente FROM pedido WHERE id_cliente='$id' LIMIT 1");
+            if($check_pedidos->rowCount()>0){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"El Cliente que intenta eliminar tiene un pedido pendiente",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            } 
+
+            // comprobar los  privilegios
+            session_start(['name' => 'SDP']);
+            if($_SESSION['privilegio_sdp'] != 1){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No tienes los permisos necesarios para eliminar un cliente",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            $eliminar_cliente=clienteModelo::eliminar_cliente_modelo($id);
+
+            if($eliminar_cliente->rowCount()==1){
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Cliente Eliminado",
+                    "Texto"=>"El cliente ha sido eliminado de manera excitosa",
+                    "Tipo"=>"success"
+                ];
+                
+            }else{
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>">No se pudo eleminar el cliente",
+                    "Tipo"=>"error"
+                ];
+            }
+            echo json_encode($alerta);
+
+        }/* Fin de del controlador */
+        
 
 
     }
