@@ -29,4 +29,16 @@ class clienteModelo extends mainModel{
 
         return $sql;
     }
+
+    /*-------- Modelo datos cliente --------*/
+    protected static function datos_cliente_modelo($tipo,$id){
+        if($tipo=="Unico"){
+            $sql=mainModel::conectar()->prepare("SELECT * FROM cliente WHERE id_cliente=:ID");
+            $sql->bindParam(":ID",$id);
+        }elseif($tipo=="Conteo"){
+            $sql=mainModel::conectar()->prepare("SELECT id_cliente FROM cliente");
+        }
+        $sql->execute();
+        return $sql;
+    }
 }
