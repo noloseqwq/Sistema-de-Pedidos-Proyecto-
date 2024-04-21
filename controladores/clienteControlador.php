@@ -11,15 +11,13 @@
         /*-------- Controlador agregar cliente --------*/
         public function agregar_cliente_controlador(){
             $RIF=mainModel::limpiar_cadena($_POST['cliente_RIF_reg']);
-            $nombre=mainModel::limpiar_cadena($_POST['cliente_nombre_reg']);
-            $apellido=mainModel::limpiar_cadena($_POST['cliente_apellido_reg']);
             $telefono=mainModel::limpiar_cadena($_POST['cliente_telefono_reg']);
             $razon=mainModel::limpiar_cadena($_POST['cliente_razon_reg']);
             $direccion=mainModel::limpiar_cadena($_POST['cliente_direccion_reg']);
 
             /*-------- comprobar campos vacios --------*/
         
-            if($RIF == "" || $nombre == "" || $apellido == "" ||$telefono == "" ||$razon == "" ||$direccion == "" ){
+            if($RIF == "" ||$telefono == "" ||$razon == "" ||$direccion == "" ){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Ocurrio un error inesperado",
@@ -42,26 +40,6 @@
                 exit();
             }
 
-            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}",$nombre)){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"ocurrio un error inesperado",
-                    "Texto"=>"El Nombre no coincide con el formato solicitado",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
-                exit();
-            }
-            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}",$apellido)){
-                $alerta=[
-                    "Alerta"=>"simple",
-                    "Titulo"=>"ocurrio un error inesperado",
-                    "Texto"=>"El Apellido no coincide con el formato solicitado",
-                    "Tipo"=>"error"
-                ];
-                echo json_encode($alerta);
-                exit();
-            }
             if(mainModel::verificar_datos("[0-9\-]{6,20}",$telefono)){
                 $alerta=[
                     "Alerta"=>"simple",
@@ -123,8 +101,6 @@
 
             $datos_cliente_reg=[
                 "RIF"=>$RIF,
-                "Nombre"=>$nombre,
-                "Apellido"=>$apellido,
                 "TLF"=>$telefono,
                 "Razon"=>$razon,
                 "Direccion"=>$direccion
@@ -167,7 +143,7 @@
             $inicio= ($pagina>0) ? (($pagina*$registros)-$registros) : 0 ;
 
             if(isset($busqueda) && $busqueda!=""){
-                $consulta="SELECT * FROM cliente WHERE cliente_rif LIKE '%$busqueda%' OR cliente_nombre LIKE '%$busqueda%' OR cliente_tlf LIKE '%$busqueda%' ORDER BY cliente_rif ASC LIMIT $inicio, $registros";
+                $consulta="SELECT * FROM cliente WHERE cliente_razon LIKE '%$busqueda%' OR cliente_rif LIKE '%$busqueda%' OR cliente_tlf LIKE '%$busqueda%' ORDER BY cliente_rif ASC LIMIT $inicio, $registros";
             }else{
                 $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM cliente ORDER BY cliente_rif ASC LIMIT $inicio, $registros";
             }
@@ -189,7 +165,7 @@
                     <tr class="text-center roboto-medium">
                         <th>#</th>
                         <th>RIF</th>
-                        <th>NOMBRE Y APELLIDO</th>
+                        <th>RAZÓN SOCIAL</th>
                         <th>TELEFONO</th>
                         <th>DIRECCIÓN</th>';
                         
@@ -212,7 +188,7 @@
                     $tabla.='<tr class="text-center">
                     <td>'.$contador.'</td>
                     <td>'.$rows['cliente_rif'].'</td>
-                    <td>'.$rows['cliente_nombre'].' '.$rows['cliente_apellido'].'</td>
+                    <td>'.$rows['cliente_razon'].'</td>
 
                     <td>'.$rows['cliente_tlf'].'</td>
                     <td>'.$rows['cliente_direccion'].'</td>';
@@ -339,5 +315,118 @@
             $id=mainModel::limpiar_cadena($id);
 
             return clienteModelo::datos_cliente_modelo($tipo,$id);
+        }/* Fin de del controlador */
+
+        /*-------- Controlador actualizar cliente --------*/
+        public function actualizar_cliente_controlador(){
+            //Recuperar ID
+            $id=mainModel::decryption($_POST['id_cliente_up']);
+            $id=mainModel::limpiar_cadena($id);
+
+            //Comprobar el cliente en la BD
+            $check_cliente=mainModel::ejecutar_consulta_simple("SELECT * FROM cliente WHERE id_cliente='$id'");
+            if($check_cliente->rowCount()<=0){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No se ha encontrado al cliente",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }else{
+                $campos=$check_cliente->fetch();
+            }
+
+            $telefono=mainModel::limpiar_cadena($_POST['cliente_telefono_up']);
+            $direccion=mainModel::limpiar_cadena($_POST['cliente_direccion_up']);
+
+            if($telefono == "" || $direccion ==""){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No ha llenado los campos obligatorios",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            /*-------- Verificando integridad de los datos --------*/
+            if(mainModel::verificar_datos("[0-9\-]{6,20}",$telefono)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"El Número de telefono no coincide con el formato solicitado",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            if(mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#\- ]{5,50}",$direccion)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"La Cedúla de indentidad no coincide con el formato solicitado",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+            
+            /*-------- Comprobando Telfono --------*/
+            if($telefono!=$campos['cliente_tlf']){
+                $check_tlf = mainModel::ejecutar_consulta_simple("SELECT cliente_tlf FROM cliente WHERE cliente_tlf='$telefono'" );
+                if($check_tlf->rowCount()>0){
+                    $alerta=[
+                        "Alerta"=>"simple",
+                        "Titulo"=>"ocurrio un error inesperado",
+                        "Texto"=>"El Numero de Telefono que ha ingresado ya se encuentra registrado",
+                        "Tipo"=>"error"
+                    ];
+                    echo json_encode($alerta);
+                    exit();
+                }
+            }
+
+            //Comprobando privilegios 
+            session_start(['name' => 'SDP']);
+            if($_SESSION['privilegio_sdp'] < 1 || $_SESSION['privilegio_sdp'] > 2){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"No cuentas con los privilegios necesarios",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            $datos_cliente_up=[
+                "TLF"=>$telefono,
+                "Direccion"=>$direccion,
+                "ID"=>$id
+            ];
+
+            $actualizar_cliente=clienteModelo::actualizar_cliente_modelo($datos_cliente_up);
+            if($actualizar_cliente->rowCount()==1){
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Cliente Actualizado",
+                    "Texto"=>"Los datos del cliente han sido actualizado con excito",
+                    "Tipo"=>"success"
+                ];
+            }else{
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"Error en la actualizacion de los datos del cliente",
+                    "Tipo"=>"error"
+                ];
+            }
+            echo json_encode($alerta);
+
+
+        
         }/* Fin de del controlador */
     }

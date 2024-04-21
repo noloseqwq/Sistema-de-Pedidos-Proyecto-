@@ -2,7 +2,7 @@
     $peticionAjax = true;
     require_once "../config/APP.php";
 
-    if(isset($_POST['cliente_RIF_reg']) || isset($_POST['id_cliente_del']) ){
+    if(isset($_POST['cliente_RIF_reg']) || isset($_POST['id_cliente_del']) || isset($_POST['id_cliente_up']) ){
 
         /*-------- Intancia al controlador --------*/
         require_once "../controladores/clienteControlador.php";
@@ -19,10 +19,10 @@
                 echo $ins_cliente->eliminar_cliente_controlador();
             } 
 
-        /*-------- Actualizar cliente 
+        /*-------- Actualizar cliente --------*/
         if(isset($_POST['id_cliente_up'])){
             echo $ins_cliente->actualizar_cliente_controlador();
-        }--------*/
+        }
     }else{
         session_start(['name' => 'SDP']);
         session_unset();

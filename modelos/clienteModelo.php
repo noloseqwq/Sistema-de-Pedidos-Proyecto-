@@ -6,11 +6,9 @@ class clienteModelo extends mainModel{
 
     /*-------- Modelo agregar cliente --------*/
     protected static function agregar_cliente_modelo($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO cliente(cliente_rif, cliente_nombre,cliente_apellido, cliente_tlf,cliente_razon,cliente_direccion)VALUES(:RIF, :Nombre, :Apellido,:TLF,:Razon,:Direccion)");
+        $sql = mainModel::conectar()->prepare("INSERT INTO cliente(cliente_rif, cliente_tlf,cliente_razon,cliente_direccion)VALUES(:RIF, :TLF,:Razon,:Direccion)");
         
         $sql->bindParam(":RIF", $datos['RIF']);
-        $sql->bindParam(":Nombre", $datos['Nombre']);
-        $sql->bindParam(":Apellido", $datos['Apellido']);
         $sql->bindParam(":TLF", $datos['TLF']);
         $sql->bindParam(":Razon", $datos['Razon']);
         $sql->bindParam(":Direccion", $datos['Direccion']);
@@ -41,4 +39,16 @@ class clienteModelo extends mainModel{
         $sql->execute();
         return $sql;
     }
+
+    /*-------- Modelo actualizar cliente --------*/
+    protected static function actualizar_cliente_modelo($datos){
+        $sql=mainModel::conectar()->prepare("UPDATE cliente SET cliente_tlf =:TLF, cliente_direccion=:Direccion WHERE id_cliente=:ID ");
+        $sql->bindParam(":TLF", $datos['TLF']);
+        $sql->bindParam(":Direccion", $datos['Direccion']);
+        $sql->bindParam(":ID", $datos['ID']);
+        $sql->execute();
+
+        return $sql;
+    }
+
 }
