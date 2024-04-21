@@ -49,12 +49,6 @@
         </div>
     </a>
     <?php }?>
-    <a href="<?php echo SERVER_URL; ?>company/" class="tile">
-        <div class="tile-tittle">Empresa</div>
-        <div class="tile-icon">
-            <i class="fas fa-store-alt fa-fw"></i>
-            <p>1 Registrada</p>
-        </div>
-    </a>
+    
 </div>
 
