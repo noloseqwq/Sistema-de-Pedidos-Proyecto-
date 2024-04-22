@@ -21,3 +21,4 @@
 
 <!-- General Styles -->
 <link rel="stylesheet" href="<?php echo SERVER_URL;?>vistas/css/style.css">
+<link rel="stylesheet" href="<?php echo SERVER_URL;?>vistas/css/estilos.css">

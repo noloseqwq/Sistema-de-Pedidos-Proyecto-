@@ -42,7 +42,7 @@ body,html{
     font-family: 'Poppins', sans-serif;
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--color-one);
+
 	color: #333333;
 	font-size: 16px;
 }
@@ -184,7 +184,7 @@ table form{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: aqua;
+	background: #284e95 ;
 }
 
 
@@ -485,6 +485,280 @@ margin-top: 10px;
 		padding-left: 0;
 	}
 }
+
+/* Presentacion estilos */
+
+
+:root{
+    --padding-continer: 100px 0;
+    --color-tittle: #001A49  ;
+}
+
+
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: var(--padding-continer);
+}
+
+.hero{
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    max-height: 800px;
+    position: relative;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    color: #fff;
+}
+
+.hero::before{
+    content: "";
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* -->Foto de Reba Spike en Unsplash<-- */
+    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url(../assets/img/portada.jpg) ;
+    background-size: cover;
+    background-position: 0%;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 85%);
+    z-index: -1;
+}
+
+/* Nav */
+
+.nav{
+    --padding-continer:0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav__title{
+    font-weight: 500;
+}
+
+.nav__link{
+    margin-left: auto;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 2.5em;
+}
+
+.nav__items{
+    list-style: none;
+}
+
+.nav__links{
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav__menu{
+    margin-left: auto;
+    cursor: pointer;
+    display: none;
+}
+
+.nav__img{
+    display: block;
+    width: 30px;
+}
+
+.nav__close{
+    display: var(--show, none);
+}
+
+/* Hero */
+
+.hero__container{
+    max-width: 800px;
+    display: grid;
+    --padding-continer:0;
+    display: grid;
+    grid-auto-rows: max-content;
+    align-content: center;
+    gap: 1em;
+    padding-bottom: 180px;
+    text-align: center;
+}
+
+.hero__title{
+    font-size: 3rem;
+}
+
+.hero__paragraph{
+    margin-bottom: 20px;
+}
+
+
+
+/* Information */
+
+.informacion {
+    background-color: #e5e5f7;
+    background-image: radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    overflow: hidden;
+}
+
+.informacion__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    align-items: center;
+}
+
+.informacion__picture {
+    max-width: 500px;
+    display: flex;
+    justify-content:center;
+    
+}
+
+.informacion__paragraph {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.informacion__img {
+    width: 80%;
+    display: block;
+}
+
+.subtitle{
+    color: var(--color-tittle);
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+/* Productos */
+
+.productos__links{
+    text-decoration: none !important;
+    color:var(--color-tittle);
+    height: 20px;
+	cursor: pointer;
+	
+}
+
+.productos__subtitle{
+    text-align: center;
+    font-size: 40px;
+}
+
+.productos__container{
+    width: 100%;
+    max-height: 1000px;
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.productos__card{
+    width: 290px;
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.productos__card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 17px 16px rgba(0, 0, 0, 0.2);
+}
+
+.productos__img{
+    width: 160px;
+    height: 160px;
+}
+
+.productos__title{
+    font-weight: 600;
+}
+
+.productos__description{
+    padding: 0 1rem;
+    font-size: 16px;
+}
+
+/* Footer */
+
+.footer {
+    background-color: #1D293F;
+}
+
+.footer__title {
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.footer__title,
+.footer__newsletter {
+    color: #fff;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 60px;
+}
+
+.nav--footer {
+    padding-bottom: 20px;
+    display: grid;
+    gap: 1em;
+    grid-auto-flow: row;
+    height: 100%;
+}
+
+.nav__link--footer {
+    display: flex;
+    margin: 0;
+    margin-right: 20px;
+    flex-wrap: wrap;
+}
+
+.footer__copy {
+    --padding-container: 30px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.footer__copyright {
+    font-weight: 300;
+}
+
+.footer__icons {
+    margin-bottom: 10px;
+
+}
+
+.footer__img {
+    margin-left: 40px;
+    width: 30px;
+	
+}
+
+
+
+
 
 
 /*  Bootstrap breakpoints */

@@ -11,8 +11,10 @@
                 }else{
                     $contenido="404";
                 }
-            }elseif($vistas=="login"|| $vistas=="index"){
+            }elseif($vistas=="login"){
                 $contenido="login";
+            }elseif($vistas=="presentacion"|| $vistas=="index"){
+                $contenido="presentacion";
             }else{
                 $contenido="404";
             }
