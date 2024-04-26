@@ -22,7 +22,9 @@
     </script>
 <script>
     const pressed = [];
+    const pressed2 = [];
     const secretCode = "elao";
+    const secretGame = "game";
 
     window.addEventListener("keyup", (e) => {
         pressed.push(e.key);
@@ -32,6 +34,18 @@
             elao();
         }
     })
+    window.addEventListener("keyup", (e) => {
+        pressed2.push(e.key);
+        pressed2.splice(-secretGame.length - 1, pressed2.length - secretGame.length);
+        console.log(pressed2);
+        if (pressed2.join("").includes(secretGame)) {
+            game();
+        }
+    })
+
+    function game(){
+        location.href="<?php echo SERVER_URL?>juego/"
+    }
 
     function elao() {
         Swal.fire({
@@ -43,6 +57,8 @@
         })
     }
 </script>
+
 <script src="<?php echo SERVER_URL; ?>vistas/js/main.js"></script>
 
 <script src="<?php echo SERVER_URL; ?>vistas/js/alertas.js"></script>
+<script src="<?php echo SERVER_URL; ?>vistas/js/game.js"></script>
