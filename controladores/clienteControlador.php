@@ -40,7 +40,7 @@
                 exit();
             }
 
-            if(mainModel::verificar_datos("[0-9\-]{6,20}",$telefono)){
+            if(mainModel::verificar_datos("[0-9\-]{11,12}",$telefono)){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
