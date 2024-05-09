@@ -196,7 +196,7 @@
                     if($privilegio == 1 || $privilegio == 2){
                         $tabla.='<td>
                         <a href="'.SERVER_URL.'client-update/'.mainModel::encryption($rows['id_cliente']).'/" class="btn btn-success">
-                            <i class="fas fa-sync-alt"></i>
+                        <i class="fas fa-edit"></i>
                         </a>
                     </td>';
                     }

@@ -6,6 +6,42 @@ class usuarioModelo extends mainModel{
 
     /*-------- Modelo agregar usuario --------*/
     protected static function agregar_usuario_modelo($datos){
+        $conn=mainModel::conectar();
+        
+        try{
+            
+            $sql = "INSERT INTO usuarios(usuario, email, clave, privilegio) VALUES(:Usuario, :EMAIL, :Clave, :Privilegio)";
+            
+            $result=$conn->prepare($sql);
+            $result->bindParam(":Usuario", $datos['Usuario']);
+            $result->bindParam(":EMAIL", $datos['EMAIL']);
+            $result->bindParam(":Clave", $datos['Clave']);
+            $result->bindParam(":Privilegio", $datos['Privilegio']);
+            
+            $result->execute();
+
+            $lastid=$conn->lastInsertId();
+
+            $sql = "INSERT INTO persona(nombre_persona, apellido_persona, CI_persona, id_usuario) VALUES(:Nombre, :Apellido, :CI, :ID)";
+
+            $result=$conn->prepare($sql);
+            $result->bindParam(":Nombre", $datos['Nombre']);
+            $result->bindParam(":Apellido", $datos['Apellido']);
+            $result->bindParam(":CI", $datos['CI']);
+            $result->bindParam(":ID", $lastid,  PDO::PARAM_INT);
+            
+            $result->execute();
+
+        
+
+        }catch(PDOException $e ){
+
+            $resulta=$conn->rollBack();
+            $result=$e;
+        }
+        return $result;
+        /*  
+                        ->MANERA ANTIGUA<-
         $sql = mainModel::conectar()->prepare("INSERT INTO usuarios(usuario, nombre, apellido, CI, email, clave, privilegio) VALUES(:Usuario, :Nombre, :Apellido, :CI, :EMAIL, :Clave, :Privilegio)");
 
         $sql->bindParam(":Usuario", $datos['Usuario']);
@@ -18,6 +54,7 @@ class usuarioModelo extends mainModel{
         $sql->execute();
 
         return $sql;
+        */
     }
     /*-------- Modelo eliminar usuario --------*/
 

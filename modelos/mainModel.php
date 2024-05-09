@@ -12,6 +12,8 @@ class mainModel{
     protected static function conectar(){
         $conexion = new PDO(SGBD, USER, PASS);
         $conexion->exec("SET CHARACTER SET utf8");
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         return $conexion;
     }
 

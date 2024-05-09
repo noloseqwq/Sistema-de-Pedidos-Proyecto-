@@ -8,7 +8,6 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 }
 
 
-
 ?>
 <div class="full-box page-header">
 	<h3 class="text-left text-center">
@@ -115,6 +114,39 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 						<p><span class="badge badge-info">Control total</span> Permisos para registrar, actualizar y eliminar</p>
 						<p><span class="badge badge-success">Edición</span> Permisos para registrar y actualizar</p>
 						<p><span class="badge badge-dark">Registrar</span> Solo permisos para registrar</p>
+						<div class="form-group">
+							<select class="form-control" name="usuario_privilegio_up">
+								<option value="1" <?php if($campos['privilegio']==1){echo'selected=""';} ?> >Control total <?php if($campos['privilegio']==1){echo'(Actual)';} ?></option>
+
+								<option value="2" <?php if($campos['privilegio']==2){echo'selected=""';} ?>>Edición <?php if($campos['privilegio']==2){echo'(Actual)';} ?></option>
+
+								<option value="3" <?php if($campos['privilegio']==3){echo'selected=""';} ?>>Registrar <?php if($campos['privilegio']==3){echo'(Actual)';} ?></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		
+		<?php } ?>
+		<?php if($_SESSION['id_sdp']==1 || $campos['id_usuario'] == $_SESSION['id_sdp']){?>
+		<br><br><br>
+		<fieldset>
+			<legend><i class="far fa-question-circle fa-1x"></i> &nbsp; Preguntas de seguridad </legend>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-6">
+						<div class="form-group">
+							<select class="form-control" name="usuario_privilegio_up">
+								<option value="1" <?php if($campos['privilegio']==1){echo'selected=""';} ?> >Control total <?php if($campos['privilegio']==1){echo'(Actual)';} ?></option>
+
+								<option value="2" <?php if($campos['privilegio']==2){echo'selected=""';} ?>>Edición <?php if($campos['privilegio']==2){echo'(Actual)';} ?></option>
+
+								<option value="3" <?php if($campos['privilegio']==3){echo'selected=""';} ?>>Registrar <?php if($campos['privilegio']==3){echo'(Actual)';} ?></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-6">
 						<div class="form-group">
 							<select class="form-control" name="usuario_privilegio_up">
 								<option value="1" <?php if($campos['privilegio']==1){echo'selected=""';} ?> >Control total <?php if($campos['privilegio']==1){echo'(Actual)';} ?></option>

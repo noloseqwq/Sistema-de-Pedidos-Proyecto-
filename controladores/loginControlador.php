@@ -107,7 +107,7 @@
                 session_destroy();
                 $alerta=[
                     "Alerta"=> "redireccionar",
-                    "URL"=> SERVER_URL."login/",
+                    "URL"=> SERVER_URL."presentacion/",
                 ];
             }else{
                 $alerta=[

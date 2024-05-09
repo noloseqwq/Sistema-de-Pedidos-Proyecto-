@@ -6,6 +6,6 @@
         <i class="fas fa-user-cog"></i>
     </a>
     <a href="#" class="btn-exit-system">
-    <i class="fas fa-user-times"></i>
+    <i class="fas fa-door-open"></i>
     </a>
 </nav>

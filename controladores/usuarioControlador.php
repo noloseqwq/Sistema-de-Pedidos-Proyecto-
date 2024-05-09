@@ -86,7 +86,7 @@
             }
 
             /*-------- Comprobando C.I --------*/
-            $check_CI = mainModel::ejecutar_consulta_simple("SELECT CI FROM usuarios WHERE CI='$CI'" );
+            $check_CI = mainModel::ejecutar_consulta_simple("SELECT CI_persona FROM persona WHERE CI_persona='$CI'" );
             if($check_CI->rowCount()>0){
                 $alerta=[
                     "Alerta"=>"simple",
@@ -174,7 +174,7 @@
             ];
 
             $agregar_usuario= usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);
-            if($agregar_usuario->rowCount()==1){
+            if($agregar_usuario==true){
                 $alerta=[
                     "Alerta"=>"limpiar",
                     "Titulo"=>"Usuario registrado",
@@ -254,7 +254,7 @@
                     <td>'.$rows['email'].'</td>
                     <td>
                         <a href="'.SERVER_URL.'user-update/'.mainModel::encryption($rows['id_usuario']).'/" class="btn btn-success">
-                            <i class="fas fa-sync-alt"></i>
+                        <i class="fas fa-edit"></i>
                         </a>
                     </td>
                     <td>
