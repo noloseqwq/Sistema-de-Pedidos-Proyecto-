@@ -50,20 +50,20 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 					<div class="col-12 col-md-4">
 						<div class="form-group">
 							<label for="usuario_CI" class="bmd-label-floating">Cedúla de Identidad</label>
-							<input type="text" pattern="[0-9\-]{6,20}" class="form-control" name="usuario_CI_up" id="usuario_CI" maxlength="20" value="<?php echo $campos['CI']?>" required>
+							<input type="text" pattern="[0-9\-]{6,20}" class="form-control" name="usuario_CI_up" id="usuario_CI" maxlength="20" value="<?php echo $campos['CI_persona']?>" required>
 						</div>
 					</div>
 
 					<div class="col-12 col-md-4">
 						<div class="form-group">
 							<label for="usuario_nombre" class="bmd-label-floating">Nombres</label>
-							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}" class="form-control" name="usuario_nombre_up" id="usuario_nombre" maxlength="35" value="<?php echo $campos['nombre']?>" required>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}" class="form-control" name="usuario_nombre_up" id="usuario_nombre" maxlength="35" value="<?php echo $campos['nombre_persona']?>" required>
 						</div>
 					</div>
 					<div class="col-12 col-md-4">
 						<div class="form-group">
 							<label for="usuario_apellido" class="bmd-label-floating">Apellidos</label>
-							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}" class="form-control" name="usuario_apellido_up" id="usuario_apellido" maxlength="35" value="<?php echo $campos['apellido']?>" required>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,35}" class="form-control" name="usuario_apellido_up" id="usuario_apellido" maxlength="35" value="<?php echo $campos['apellido_persona']?>" required>
 						</div>
 					</div>
 					<div class="col-12 col-md-6">
@@ -129,38 +129,8 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 		</fieldset>
 		
 		<?php } ?>
-		<?php if($_SESSION['id_sdp']==1 || $campos['id_usuario'] == $_SESSION['id_sdp']){?>
-		<br><br><br>
-		<fieldset>
-			<legend><i class="far fa-question-circle fa-1x"></i> &nbsp; Preguntas de seguridad </legend>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-6">
-						<div class="form-group">
-							<select class="form-control" name="usuario_privilegio_up">
-								<option value="1" <?php if($campos['privilegio']==1){echo'selected=""';} ?> >Control total <?php if($campos['privilegio']==1){echo'(Actual)';} ?></option>
-
-								<option value="2" <?php if($campos['privilegio']==2){echo'selected=""';} ?>>Edición <?php if($campos['privilegio']==2){echo'(Actual)';} ?></option>
-
-								<option value="3" <?php if($campos['privilegio']==3){echo'selected=""';} ?>>Registrar <?php if($campos['privilegio']==3){echo'(Actual)';} ?></option>
-							</select>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<select class="form-control" name="usuario_privilegio_up">
-								<option value="1" <?php if($campos['privilegio']==1){echo'selected=""';} ?> >Control total <?php if($campos['privilegio']==1){echo'(Actual)';} ?></option>
-
-								<option value="2" <?php if($campos['privilegio']==2){echo'selected=""';} ?>>Edición <?php if($campos['privilegio']==2){echo'(Actual)';} ?></option>
-
-								<option value="3" <?php if($campos['privilegio']==3){echo'selected=""';} ?>>Registrar <?php if($campos['privilegio']==3){echo'(Actual)';} ?></option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
-		</fieldset>
-		<?php } ?>
+		
+		
 		<br><br><br>
 		<fieldset>
 			<p class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre de usuario y contraseña</p>

@@ -211,9 +211,9 @@
             $inicio= ($pagina>0) ? (($pagina*$registros)-$registros) : 0 ;
 
             if(isset($busqueda) && $busqueda!=""){
-                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM usuarios WHERE ((id_usuario!='$id' AND id_usuario!='1')AND (CI LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' OR email LIKE '%$busqueda%')) ORDER BY nombre ASC LIMIT $inicio, $registros";
+                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM usuarios, persona WHERE ((id_usuario!='$id' AND id_usuario!='1')AND (id_usuario=id_usu) AND (CI_persona LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' OR email LIKE '%$busqueda%')) ORDER BY nombre_persona ASC LIMIT $inicio, $registros";
             }else{
-                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM usuarios WHERE id_usuario!='$id' AND id_usuario!='1' ORDER BY nombre ASC LIMIT $inicio, $registros";
+                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM usuarios, persona WHERE id_usuario!='$id' AND id_usuario!='1' AND id_usuario=id_usu ORDER BY nombre_persona ASC LIMIT $inicio, $registros";
             }
 
             $conexion= mainModel::conectar();
@@ -247,8 +247,8 @@
                 foreach($datos as $rows){
                     $tabla.='<tr class="text-center">
                     <td>'.$contador.'</td>
-                    <td>'.$rows['CI'].'</td>
-                    <td>'.$rows['nombre'].' '.$rows['apellido'].'</td>
+                    <td>'.$rows['CI_persona'].'</td>
+                    <td>'.$rows['nombre_persona'].' '.$rows['apellido_persona'].'</td>
 
                     <td>'.$rows['usuario'].'</td>
                     <td>'.$rows['email'].'</td>
@@ -377,7 +377,7 @@
             $id=mainModel::limpiar_cadena($id);
 
             //Comprobar el usuario en la BD
-            $check_user=mainModel::ejecutar_consulta_simple("SELECT * FROM usuarios WHERE id_usuario='$id' ");
+            $check_user=mainModel::ejecutar_consulta_simple("SELECT * FROM usuarios, persona WHERE id_usuario=id_usu AND id_usuario='$id' ");
 
             if($check_user->rowCount()<=0){
                 $alerta=[
@@ -499,8 +499,8 @@
                 exit();
             }
             /*-------- Comprobando C.I --------*/
-            if($CI!=$campos['CI']){
-                $check_CI = mainModel::ejecutar_consulta_simple("SELECT CI FROM usuarios WHERE CI='$CI'" );
+            if($CI!=$campos['CI_persona']){
+                $check_CI = mainModel::ejecutar_consulta_simple("SELECT CI_persona FROM persona WHERE CI_persona='$CI'" );
                 if($check_CI->rowCount()>0){
                     $alerta=[
                         "Alerta"=>"simple",

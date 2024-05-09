@@ -8,8 +8,7 @@ class usuarioModelo extends mainModel{
     protected static function agregar_usuario_modelo($datos){
         $conn=mainModel::conectar();
         
-        try{
-            
+        try{   
             $sql = "INSERT INTO usuarios(usuario, email, clave, privilegio) VALUES(:Usuario, :EMAIL, :Clave, :Privilegio)";
             
             $result=$conn->prepare($sql);
@@ -22,7 +21,7 @@ class usuarioModelo extends mainModel{
 
             $lastid=$conn->lastInsertId();
 
-            $sql = "INSERT INTO persona(nombre_persona, apellido_persona, CI_persona, id_usuario) VALUES(:Nombre, :Apellido, :CI, :ID)";
+            $sql = "INSERT INTO persona(nombre_persona, apellido_persona, CI_persona, id_usu) VALUES(:Nombre, :Apellido, :CI, :ID)";
 
             $result=$conn->prepare($sql);
             $result->bindParam(":Nombre", $datos['Nombre']);
@@ -32,29 +31,12 @@ class usuarioModelo extends mainModel{
             
             $result->execute();
 
-        
-
         }catch(PDOException $e ){
 
             $resulta=$conn->rollBack();
             $result=$e;
         }
         return $result;
-        /*  
-                        ->MANERA ANTIGUA<-
-        $sql = mainModel::conectar()->prepare("INSERT INTO usuarios(usuario, nombre, apellido, CI, email, clave, privilegio) VALUES(:Usuario, :Nombre, :Apellido, :CI, :EMAIL, :Clave, :Privilegio)");
-
-        $sql->bindParam(":Usuario", $datos['Usuario']);
-        $sql->bindParam(":Nombre", $datos['Nombre']);
-        $sql->bindParam(":Apellido", $datos['Apellido']);
-        $sql->bindParam(":CI", $datos['CI']);
-        $sql->bindParam(":EMAIL", $datos['EMAIL']);
-        $sql->bindParam(":Clave", $datos['Clave']);
-        $sql->bindParam(":Privilegio", $datos['Privilegio']);
-        $sql->execute();
-
-        return $sql;
-        */
     }
     /*-------- Modelo eliminar usuario --------*/
 
@@ -70,7 +52,7 @@ class usuarioModelo extends mainModel{
     /*-------- Modelo datos usuario --------*/
     protected static function datos_usuario_modelo($tipo,$id){
         if($tipo=="Unico"){
-            $sql=mainModel::conectar()->prepare("SELECT * FROM usuarios WHERE id_usuario=:ID");
+            $sql=mainModel::conectar()->prepare("SELECT * FROM usuarios, persona WHERE id_usuario=:ID AND id_usuario=id_usu");
             $sql->bindParam(":ID", $id);
         }elseif($tipo=="Conteo"){
             $sql=mainModel::conectar()->prepare("SELECT id_usuario FROM usuarios WHERE id_usuario!=1");
@@ -81,7 +63,7 @@ class usuarioModelo extends mainModel{
     }
     /*-------- Modelo actualizar datos usuario --------*/
     protected static function actualizar_usuario_modelo($datos){
-        $sql=mainModel::conectar()->prepare("UPDATE usuarios SET usuario=:Usuario, nombre=:Nombre, apellido=:Apellido, CI=:CI, email=:EMAIL, clave=:Clave, privilegio=:Privilegio WHERE id_usuario=:ID ");
+        $sql=mainModel::conectar()->prepare("UPDATE usuarios INNER JOIN persona ON usuarios.id_usuario=persona.id_usu SET usuarios.usuario=:Usuario, persona.nombre_persona=:Nombre, persona.apellido_persona=:Apellido, persona.CI_persona=:CI, email=:EMAIL, clave=:Clave, privilegio=:Privilegio WHERE id_usuario=:ID ");
 
         $sql->bindParam(":Usuario", $datos['Usuario']);
         $sql->bindParam(":Nombre", $datos['Nombre']);

@@ -64,8 +64,8 @@
 
                 session_start(['name' => 'SDP']);
                 $_SESSION['id_sdp']=$row['id_usuario'];
-                $_SESSION['nombre_sdp']=$row['nombre'];
-                $_SESSION['apellido_sdp']=$row['apellido'];
+                $_SESSION['nombre_sdp']=$row['nombre_persona'];
+                $_SESSION['apellido_sdp']=$row['apellido_persona'];
                 $_SESSION['usuario_sdp']=$row['usuario'];
                 $_SESSION['privilegio_sdp']=$row['privilegio'];
                 $_SESSION['token_sdp']=md5(uniqid(mt_rand(),true));
