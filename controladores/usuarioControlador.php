@@ -74,7 +74,7 @@
                 echo json_encode($alerta);
                 exit();
             }
-            if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{7,100}",$clave1) || mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{7,100}",$clave2) ){
+            if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$clave1) || mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$clave2) ){
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"ocurrio un error inesperado",
@@ -399,6 +399,13 @@
             $usuario=mainModel::limpiar_cadena($_POST['usuario_usuario_up']);
             $email=mainModel::limpiar_cadena($_POST['usuario_email_up']);
 
+            $pregunta1=mainModel::limpiar_cadena($_POST['usuario_pregunta1_up']);
+            $pregunta2=mainModel::limpiar_cadena($_POST['usuario_pregunta2_up']);
+            $respuesta1=mainModel::limpiar_cadena($_POST['usuario_respuesta1_up']);
+            $respuesta2=mainModel::limpiar_cadena($_POST['usuario_respuesta2_up']);
+
+            
+
             if(isset($_POST['usuario_privilegio_up'])){
                 $privilegio=mainModel::limpiar_cadena($_POST['usuario_privilegio_up']);
             }else{
@@ -464,6 +471,51 @@
                 echo json_encode($alerta);
                 exit();
             }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{7,100}",$pregunta1)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"La pregunta N°1 no coincide con el formato solicitado",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{7,100}",$pregunta2)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"La pregunta N°2 no coincide con el formato solicitado",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$respuesta1)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"La respuesta N°1 no coincide con el formato solicitado",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$respuesta2)){
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ocurrio un error inesperado",
+                    "Texto"=>"La respuesta N°2 no coincide con el formato solicitado",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+
             
             if(mainModel::verificar_datos("[a-zA-Z0-9]{3,35}",$admin_usuario)){
                 $alerta=[
@@ -566,7 +618,7 @@
                     echo json_encode($alerta);
                     exit();
                 }else{
-                    if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{7,100}",$_POST['usuario_clave_1_up']) || mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{7,100}",$_POST['usuario_clave_2_up']) ){
+                    if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['usuario_clave_1_up']) || mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{8,100}",$_POST['usuario_clave_2_up']) ){
                         $alerta=[
                             "Alerta"=>"simple",
                             "Titulo"=>"ocurrio un error inesperado",
@@ -619,6 +671,10 @@
                 "EMAIL"=>$email,
                 "Clave"=>$clave,
                 "Privilegio"=>$privilegio,
+                "Pregunta1" =>$pregunta1,
+                "Pregunta2" =>$pregunta2,
+                "Respuesta1" =>$respuesta1,
+                "Respuesta2" =>$respuesta2,
                 "ID"=>$id
             ];
 

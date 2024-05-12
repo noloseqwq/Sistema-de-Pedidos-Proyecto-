@@ -13,4 +13,17 @@ class loginModelo extends mainModel{
         
         return $sql;
     }
+
+    /*--------Modelo para iniciar sesión--------*/
+    protected static function  recuperar_clave_modelo($datos){
+        $sql=mainModel::conectar()->prepare("UPDATE usuarios SET clave=:Clave WHERE usuario=:Usuario");
+        
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        $sql->bindParam(":Clave", $datos['Clave']);
+        $sql->execute();
+        
+        return $sql;
+
+
+    }
 }

@@ -16,7 +16,7 @@
     
     $vistas = $IV->obtener_vistas_controlador(); // IV = Instancias a las vistas
     
-    if ($vistas == "login" || $vistas == "404" ||$vistas == "presentacion"  ) {
+    if ($vistas == "login" || $vistas == "404" ||$vistas == "presentacion" || $vistas=="recuperar" ) {
         require_once "./vistas/contenidos/" . $vistas . "-CJ.php";
     } else {
         session_start(['name' => 'SDP']);

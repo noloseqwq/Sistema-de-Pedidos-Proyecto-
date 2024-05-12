@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-center">
                         <h3>Inicar Sesion</h3>
                     </div>
                     <div class="card-body">
@@ -18,6 +18,9 @@
                             </div>
                             <button type="submit" class="btn btn-login btn-info">Iniciar Sesión</button>
                         </form>
+                    <div class="text-center h5">
+                        <a  href="<?php echo SERVER_URL?>recuperar">¿Has olvidado tu contraseña?</a>
+                    </div>
                     </div>
                 </div>
             </div>

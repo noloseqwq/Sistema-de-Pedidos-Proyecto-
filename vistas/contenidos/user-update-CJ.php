@@ -92,13 +92,13 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 					<div class="col-12 col-md-6">
 						<div class="form-group">
 							<label for="usuario_clave_nueva_1" class="bmd-label-floating">Contraseña</label>
-							<input type="password" class="form-control" name="usuario_clave_1_up" id="usuario_clave_nueva_1" pattern="[a-zA-Z0-9$@.\-]{7,100}" maxlength="100">
+							<input type="password" class="form-control" name="usuario_clave_1_up" id="usuario_clave_nueva_1" pattern="[a-zA-Z0-9$@.\-]{8,100}" maxlength="100">
 						</div>
 					</div>
 					<div class="col-12 col-md-6">
 						<div class="form-group">
 							<label for="usuario_clave_nueva_2" class="bmd-label-floating">Repetir contraseña</label>
-							<input type="password" class="form-control" name="usuario_clave_2_up" id="usuario_clave_up_2" pattern="[a-zA-Z0-9$@.\-]{7,100}" maxlength="100">
+							<input type="password" class="form-control" name="usuario_clave_2_up" id="usuario_clave_up_2" pattern="[a-zA-Z0-9$@.\-]{8,100}" maxlength="100">
 						</div>
 					</div>
 				</div>
@@ -129,8 +129,40 @@ if($lc->encryption($_SESSION['id_sdp'])!=$pagina[1]){
 		</fieldset>
 		
 		<?php } ?>
-		
-		
+		<?php if($_SESSION['id_sdp']==1 || $campos['id_usuario'] == $_SESSION['id_sdp']){?>
+		<br><br><br>
+		<fieldset>
+			<legend><i class="far fa-question-circle fa-1x"></i> &nbsp; Preguntas de seguridad </legend>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="usuario_pregunta1_up" class="bmd-label-floating">Pregunta N°1</label>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{7,100}" class="form-control" name="usuario_pregunta1_up" id="usuario_pregunta1_up" maxlength="35" value="<?php echo $campos['pregunta1']?>" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="usuario_pregunta2_up" class="bmd-label-floating">Pregunta N°2</label>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{7,100}" class="form-control" name="usuario_pregunta2_up" id="usuario_pregunta2_up" maxlength="35" value="<?php echo $campos['pregunta2']?>"  required>
+						</div>
+					</div>
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="usuario_respuesta1" class="bmd-label-floating">Respuesta N°1</label>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}" class="form-control" name="usuario_respuesta1_up" id="usuario_respuesta1" maxlength="35" value="<?php echo $campos['respuesta1']?>"  required>
+						</div>
+					</div>
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="usuario_respuesta2" class="bmd-label-floating">Respuesta N°2</label>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}" class="form-control" name="usuario_respuesta2_up" id="usuario_respuesta2" maxlength="35" value="<?php echo $campos['respuesta2']?>" required>
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<?php } ?>
 		<br><br><br>
 		<fieldset>
 			<p class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre de usuario y contraseña</p>

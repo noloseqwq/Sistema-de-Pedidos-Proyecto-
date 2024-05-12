@@ -33,7 +33,7 @@
 					require_once "./controladores/usuarioControlador.php";
 					$ins_usuarioTab = new usuarioControlador();
 					
-					echo $ins_usuarioTab->paginador_usuario_controlador($pagina[1],8, $_SESSION['privilegio_sdp'],$_SESSION['id_sdp'],$pagina[0],"");
+					echo $ins_usuarioTab->paginador_usuario_controlador($pagina[1],6, $_SESSION['privilegio_sdp'],$_SESSION['id_sdp'],$pagina[0],"");
 
 
 				?>

@@ -43,7 +43,7 @@ class usuarioModelo extends mainModel{
     protected static function eliminar_usuario_modelo($id){
         $sql= mainModel::conectar()->prepare("DELETE FROM usuarios WHERE id_usuario=:ID");
 
-        $sql->bindParam(":ID", $id);
+            $sql->bindParam(":ID", $id);
         $sql->execute();
 
         return $sql;
@@ -63,7 +63,7 @@ class usuarioModelo extends mainModel{
     }
     /*-------- Modelo actualizar datos usuario --------*/
     protected static function actualizar_usuario_modelo($datos){
-        $sql=mainModel::conectar()->prepare("UPDATE usuarios INNER JOIN persona ON usuarios.id_usuario=persona.id_usu SET usuarios.usuario=:Usuario, persona.nombre_persona=:Nombre, persona.apellido_persona=:Apellido, persona.CI_persona=:CI, email=:EMAIL, clave=:Clave, privilegio=:Privilegio WHERE id_usuario=:ID ");
+        $sql=mainModel::conectar()->prepare("UPDATE usuarios AS u INNER JOIN persona AS p ON u.id_usuario=p.id_usu SET u.usuario=:Usuario, p.nombre_persona=:Nombre, p.apellido_persona=:Apellido, p.CI_persona=:CI, u.email=:EMAIL, u.clave=:Clave, u.privilegio=:Privilegio, u.pregunta1=:Pregunta1, u.pregunta2=:Pregunta2, u.respuesta1=:Respuesta1, u.respuesta2=:Respuesta2 WHERE id_usuario=:ID ");
 
         $sql->bindParam(":Usuario", $datos['Usuario']);
         $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -72,6 +72,10 @@ class usuarioModelo extends mainModel{
         $sql->bindParam(":EMAIL", $datos['EMAIL']);
         $sql->bindParam(":Clave", $datos['Clave']);
         $sql->bindParam(":Privilegio", $datos['Privilegio']);
+        $sql->bindParam(":Pregunta1", $datos['Pregunta1']);
+        $sql->bindParam(":Pregunta2", $datos['Pregunta2']);
+        $sql->bindParam(":Respuesta1", $datos['Respuesta1']);
+        $sql->bindParam(":Respuesta2", $datos['Respuesta2']);
         $sql->bindParam(":ID", $datos['ID']);
         $sql->execute();
 

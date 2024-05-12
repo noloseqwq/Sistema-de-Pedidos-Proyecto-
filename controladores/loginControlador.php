@@ -85,7 +85,7 @@
 
         }/*Fin del controlador */
 
-        /*--------Controlador para forzar cierre de sesion al sisrema--------*/
+        /*--------Controlador para forzar cierre de sesion al sistema--------*/
         public function forzar_cierre_sesion_controlador(){
             session_unset();
             session_destroy();
@@ -96,7 +96,7 @@
             }
         }/*Fin del controlador */
 
-        /*--------Controlador para  cierre de sesion al sisrema--------*/
+        /*--------Controlador para  cierre de sesion al sistema--------*/
         public function cerrar_sesion_controlador(){
             session_start(['name'=>'SDP']);
             $token=mainModel::decryption($_POST['token']);
@@ -120,4 +120,150 @@
             echo json_encode($alerta);
             
         }/*Fin del controlador */
+        
+        /*--------Controlador comprobar usuario--------*/
+        public function comprobar_usuario_controlador($dato){
+
+            $usuario = mainModel::limpiar_cadena($dato);
+
+            if(mainModel::verificar_datos("[a-zA-Z0-9]{3,35}",$usuario)){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "El Usuario no coincide con el formato solicitado",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+
+            }
+            $check_user=mainModel::ejecutar_consulta_simple("SELECT * FROM usuarios WHERE usuario='$usuario'");
+
+
+            if($check_user->rowCount() < 1){
+                echo'<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "No se encontro al usuario en el sistema",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+            return $check_user;
+        }/*Fin del controlador */
+
+        /*--------Controlador comprobar respuesta--------*/
+
+        public function comprobar_respuesta_controlador($datos){
+            $respuesta1=mainModel::limpiar_cadena($datos['Respuesta1']);
+            $respuesta2=mainModel::limpiar_cadena($datos['Respuesta2']);
+            $usuario=mainModel::limpiar_cadena($datos['Usuario']);
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$respuesta1)){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "La respuesta N°1 no coincide con el formato solicitado",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+
+            if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$respuesta2)){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "La respuesta N°2 no coincide con el formato solicitado",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+
+            
+            $check_respuesta=mainModel::ejecutar_consulta_simple("SELECT * FROM usuarios WHERE usuario='$usuario' AND respuesta1='$respuesta1' AND respuesta2='$respuesta2'");
+
+            if($check_respuesta->rowCount() < 1){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "Alguna de las respuestas es incorecctas",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+
+            return $check_respuesta;
+
+        }/*Fin del controlador */
+
+        /*--------Controlador actualizar clave--------*/
+        public function recuperar_clave_controlador(){
+            $usuario = mainModel::limpiar_cadena($_POST['usuario_rec']);
+            $clave = mainModel::limpiar_cadena($_POST['clave_rec']);
+
+            if(mainModel::verificar_datos("[a-zA-Z0-9]{3,35}",$usuario)){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "El Usuario no coincide con el formato solicitado",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+
+            }
+            if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{7,100}",$clave)){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "La clave no coincide con el formato solicitado",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+            
+            $clave=mainModel::encryption($clave);
+
+            $datos=[
+                "Usuario" => $usuario,
+                "Clave" => $clave
+            ];
+
+            $actualizacion=loginModelo::recuperar_clave_modelo($datos);
+
+            if($actualizacion->rowCount()==1){
+                echo'<script>
+                
+                Swal.fire({
+                    title:"Actualizacion Exitosa",
+                    text: "La actualizacion de la contraseña a sido exitosa",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href ="'.SERVER_URL.'login"
+                    }
+                });
+                
+                
+                </script>';
+
+            }
+
+            
+
+        }
+    
     }
