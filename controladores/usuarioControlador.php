@@ -178,7 +178,7 @@
                 $alerta=[
                     "Alerta"=>"limpiar",
                     "Titulo"=>"Usuario registrado",
-                    "Texto"=>"Los datos usuario han sido registrado con excito",
+                    "Texto"=>"Los datos usuario han sido registrado con exito",
                     "Tipo"=>"success"
                 ];
             }else{

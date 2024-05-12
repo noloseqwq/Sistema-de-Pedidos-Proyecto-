@@ -28,12 +28,16 @@
             <p>9 Registrados</p>
         </div>
     </a>
-
+    <?php 
+    require_once "./controladores/productoControlador.php";
+    $ins_producto = new productoControlador();
+    $total_productos= $ins_producto->datos_producto_controlador("Conteo", 0)
+    ?>
     <a href="<?php echo SERVER_URL; ?>product-list/" class="tile">
         <div class="tile-tittle">Productos</div>
         <div class="tile-icon">
             <i class="fas fa-boxes fa-fw"></i>
-            <p>30 Registradas</p>
+            <p><?php echo $total_productos->rowCount(); ?> Registrados</p>
         </div>
     </a>
     <?php if($_SESSION['privilegio_sdp']==1){

@@ -5,8 +5,16 @@
         -insertar datos en las dos tablas (Listo)
         -Modificar el codigo para que funcione (Listo)
 
-        ->hacer la recuperacion de contraseña
-        ->Colocar que tipo de persona es el del rif, si es judirica y ese tipo de cosas 
+        ->hacer la recuperacion de contraseña (listo)
         ->hacer el modulo de productos
         ->hacer el modulo de pedidos
-        ->sacar el registro de los usuarios para afuera(no me cuadra que no lo haya dicho antes)
+        ->Colocar que tipo de persona es el del rif, si es judirica y ese tipo de cosas
+        ->hacer que actualice algunas partes del clinete, tu sabes que.  
+        
+        j = juridico
+        v = Venezolano o firma personal
+        g = Gobierno 
+        c = comunas??
+        p = Pasaporte
+        e = extranjero
+        m = ???

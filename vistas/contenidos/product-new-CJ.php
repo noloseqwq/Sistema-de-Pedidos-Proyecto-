@@ -21,7 +21,7 @@
 
             <!--CONTENT-->
             <div class="container-fluid">
-                <form action="" class="form-neon" autocomplete="off">
+                <form class="form-neon FormularioAjax" action="<?php echo SERVER_URL; ?>ajax/productoAjax.php" method="POST" data-form="save" autocomplete="off">
                     <fieldset>
                         <legend class=" text-center"><i class="fas fa-boxes"></i> &nbsp; Informacion del producto</legend>
                         <div class="container-fluid">
@@ -39,7 +39,7 @@
                                         <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#\- ]{14,100}" class="form-control" name="producto_nombre_reg" id="producto_nombre" maxlength="140">
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">
                                         <label for="producto_detalle" class="bmd-label-floating">Descripción </label>
