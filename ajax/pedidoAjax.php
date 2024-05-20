@@ -2,7 +2,7 @@
     $peticionAjax = true;
     require_once "../config/APP.php";
 
-    if(isset($_POST['buscar_cliente']) || isset($_POST['id_agregar_cliente']) || isset($_POST['id_producto_up'])){
+    if(isset($_POST['buscar_cliente']) || isset($_POST['id_agregar_cliente']) || isset($_POST['id_eliminar_cliente']) || isset($_POST['buscar_producto'])){
 
         /*-------- Intancia al controlador --------*/
         require_once "../controladores/pedidoControlador.php";
@@ -18,15 +18,15 @@
             echo $ins_pedido->agregar_cliente_pedido_controlador();
         }  
         
-        /*-------- Eliminar producto
-        if(isset($_POST['id_producto_del'])){
-                echo $ins_producto->eliminar_producto_controlador();
-        }--------*/
+        /*-------- Eliminar cliente--------*/
+        if(isset($_POST['id_eliminar_cliente'])){
+                echo $ins_pedido->eliminar_cliente_pedido_controlador();
+        }
         
-        /*-------- Actualizar producto
-        if(isset($_POST['id_producto_up'])){
-            echo $ins_producto->actualizar_producto_controlador();
-        } --------*/
+        /*-------- buscar producto--------*/
+        if(isset($_POST['buscar_producto'])){
+            echo $ins_pedido->buscar_producto_pedido_controlador();
+        } 
     }else{
         session_start(['name' => 'SDP']);
         session_unset();

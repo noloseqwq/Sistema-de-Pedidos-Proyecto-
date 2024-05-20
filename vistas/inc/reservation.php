@@ -59,4 +59,33 @@
             }
         });
     }
+
+    /*-------- Buscar producto --------*/
+    function buscar_producto() {
+        let input_producto = document.querySelector('#input_producto').value;
+
+        input_producto = input_producto.trim();
+
+        if (input_producto != "") {
+            let datos = new FormData();
+            datos.append("buscar_producto", input_producto);
+            fetch("<?php echo SERVER_URL ?>ajax/pedidoAjax.php", {
+                    method: 'POST',
+                    body: datos,
+
+                })
+                .then(respuesta => respuesta.text())
+                .then(respuesta => {
+                    let tabla_producto = document.querySelector('#tabla_productos');
+                    tabla_producto.innerHTML = respuesta;
+                });
+        } else {
+            Swal.fire({
+                title: 'Ocurrio un error',
+                text: 'Debes introducir el Codigo o el nombre del producto',
+                type: 'error',
+                confirmButtonText: 'Aceptar',
+            });
+        }
+    }
 </script>

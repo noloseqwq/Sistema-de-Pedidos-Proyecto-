@@ -27,7 +27,7 @@
 					require_once "./controladores/productoControlador.php";
 					$ins_productoTab = new productoControlador();
 					
-					echo $ins_productoTab->paginador_producto_controlador($pagina[1],50, $_SESSION['privilegio_sdp'],$pagina[0],"");
+					echo $ins_productoTab->paginador_producto_controlador($pagina[1],8, $_SESSION['privilegio_sdp'],$pagina[0],"");
 
 
 				?>

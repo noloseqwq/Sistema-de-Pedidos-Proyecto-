@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2024 a las 04:43:22
+-- Tiempo de generación: 13-05-2024 a las 15:29:28
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -49,6 +49,61 @@ INSERT INTO `cliente` (`id_cliente`, `cliente_rif`, `cliente_tlf`, `cliente_razo
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_pedido`
+--
+
+CREATE TABLE `detalle_pedido` (
+  `id_detalle` int(11) NOT NULL,
+  `id_pedido` int(11) NOT NULL,
+  `producto_nombre` varchar(250) NOT NULL,
+  `cantidad_detalle` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `id_pedido` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
+  `estado_producto` varchar(250) NOT NULL,
+  `fecha_producto` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `persona`
+--
+
+CREATE TABLE `persona` (
+  `id_persona` int(11) NOT NULL,
+  `nombre_persona` varchar(250) NOT NULL,
+  `apellido_persona` varchar(250) NOT NULL,
+  `CI_persona` varchar(250) NOT NULL,
+  `id_usu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`id_persona`, `nombre_persona`, `apellido_persona`, `CI_persona`, `id_usu`) VALUES
+(1, 'Administrador', 'Principal', '00000000', 1),
+(46, 'pepe', 'perales', '30303030', 80),
+(47, 'Rosa', 'Camargo', '14296279', 81),
+(48, 'Gabriel', 'Perdomo', '11273546', 82),
+(49, 'Andreyna', 'Camargo', '18854631', 83),
+(50, 'Gabriel', 'Perdomo', '30040201', 84),
+(51, 'Josmely', 'Durán', '30826174', 85),
+(52, 'Dolid', 'Mora', '20258438', 86),
+(53, 'waos', 'WAOS', '2667895', 87);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `producto`
 --
 
@@ -59,6 +114,16 @@ CREATE TABLE `producto` (
   `descripcion_producto` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `codigo_producto`, `nombre_producto`, `descripcion_producto`) VALUES
+(1, 'MB8', 'Manga Blanca Clase A #8', ''),
+(2, 'MB10', 'Manga Blanca Clase A #10', ''),
+(3, 'KMD', 'Kit con 3 Mangas Desechable', 'Con tres boquillas, un acople y tres mangas desechable'),
+(4, 'KMA21', 'Kit de Manga Amarilla #21 para churro', 'Trae un a manga amarilla # 21, una boquilla grande 14B y la receta de churro');
+
 -- --------------------------------------------------------
 
 --
@@ -68,26 +133,29 @@ CREATE TABLE `producto` (
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(30) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `CI` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
   `clave` varchar(100) NOT NULL,
-  `privilegio` int(2) NOT NULL
+  `privilegio` int(2) NOT NULL,
+  `pregunta1` varchar(250) DEFAULT NULL,
+  `pregunta2` varchar(250) DEFAULT NULL,
+  `respuesta1` varchar(250) DEFAULT NULL,
+  `respuesta2` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `usuario`, `nombre`, `apellido`, `CI`, `email`, `clave`, `privilegio`) VALUES
-(1, 'admin123', 'Administrador', 'Principal', '30303030', 'ga@gmail.com', 'Tmd6ODlyOXp1NnVTdFBvQmN1SUc2UT09', 1),
-(2, 'noloseqwq', 'Gabriel', 'Perdomo', '30040201', 'gabrieldjesus@gmail.com', 'NUY2NC9nalcvQjdSU2s2bkYxZ2EvZz09', 1),
-(6, 'mely', 'Josmely', 'Durán', '30826174', 'josmely15@gmail.com', 'NUY2NC9nalcvQjdSU2s2bkYxZ2EvZz09', 2),
-(7, 'hola', 'asdasd', 'asdasd', '12121212121', 'h@a.ads', 'NUY2NC9nalcvQjdSU2s2bkYxZ2EvZz09', 2),
-(9, 'rosa', 'Rosa', 'Camargo', '14296279', 'rosamaricampe@gmail.com', 'd0tyZzVOR1JOWFJvOHcvSnJQaDhZUT09', 1),
-(12, 'nasdsa', 'aasdas', 'asdas', '330030', 'sad@asd.asd', 'NUY2NC9nalcvQjdSU2s2bkYxZ2EvZz09', 3),
-(13, 'nolose', 'adssad', 'adsasxcf', '4545454', 'asd@ads.qsa', 'NUY2NC9nalcvQjdSU2s2bkYxZ2EvZz09', 2);
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `email`, `clave`, `privilegio`, `pregunta1`, `pregunta2`, `respuesta1`, `respuesta2`) VALUES
+(1, 'admin123', 'ga@gmail.com', 'Tmd6ODlyOXp1NnVTdFBvQmN1SUc2UT09', 1, 'que te gusta comer?', 'palabra Random', 'quesadillas', 'aceitunas'),
+(80, 'pepes', 'pepe@perales.papas', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 2, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(81, 'rosa', 'rosamaricampe@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 1, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(82, 'caiman', 'gabrieljesusperdomo@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 2, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(83, 'isabela', 'andre_isabel@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 1, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(84, 'noloseqwq', 'gabrieldjesusperdomo@gmail.com', 'SVdaeUFlc0ZmbDVDd0lMZXJzU3BiZz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(85, 'mely', 'josmely15@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(86, 'mora', 'moradolid@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(87, 'skaskj', 'asd@sa.qde', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 2, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris');
 
 --
 -- Índices para tablas volcadas
@@ -98,6 +166,27 @@ INSERT INTO `usuarios` (`id_usuario`, `usuario`, `nombre`, `apellido`, `CI`, `em
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
+
+--
+-- Indices de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD PRIMARY KEY (`id_detalle`),
+  ADD KEY `pedido` (`id_pedido`);
+
+--
+-- Indices de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD KEY `cliente` (`id_client`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD PRIMARY KEY (`id_persona`),
+  ADD KEY `FKuser` (`id_usu`);
 
 --
 -- Indices de la tabla `producto`
@@ -122,16 +211,56 @@ ALTER TABLE `cliente`
   MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `persona`
+--
+ALTER TABLE `persona`
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD CONSTRAINT `persona_ibfk_1` FOREIGN KEY (`id_usu`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,11 +5,12 @@
         -insertar datos en las dos tablas (Listo)
         -Modificar el codigo para que funcione (Listo)
 
-        ->hacer la recuperacion de contraseña (listo)
-        ->hacer el modulo de productos(listo)
-        ->hacer el modulo de pedidos 
+        -hacer la recuperacion de contraseña (listo)
+        -hacer el modulo de productos(listo)
+        ->hacer el modulo de pedidos
+        -> Hacer la vista para los pedidos por cliente
         ->Colocar que tipo de persona es el del rif, si es judirica y ese tipo de cosas
-        ->hacer que actualice algunas partes del clinete, tu sabes que.  
+        ->hacer que actualice algunas partes del cliente, tu sabes que.  
         
         j = juridico
         v = Venezolano o firma personal

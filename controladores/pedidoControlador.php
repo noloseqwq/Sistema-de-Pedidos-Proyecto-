@@ -8,7 +8,7 @@
 
     class pedidoControlador extends pedidoModelo {
 
-        /*-------- controlador buscar Cliente --------*/
+        /*-------- controlador buscar Cliente Pedido --------*/
         public function buscar_cliente_pedido_controlador() {
             
             /*-------- recuperar el texto --------*/
@@ -69,7 +69,7 @@
             
         } /* fin del controlador */
         
-        /*-------- controlador agregar Cliente --------*/
+        /*-------- controlador agregar Cliente Pedido --------*/
         public function agregar_cliente_pedido_controlador(){
 
             /*-------- recuperar el id --------*/
@@ -121,4 +121,92 @@
             
             
         } /* fin del controlador */
+
+        /*-------- Controlador eliminar cliente Pedido --------*/
+        public function eliminar_cliente_pedido_controlador(){
+
+            //Inicando Sesion 
+            session_start(['name' => 'SDP']);
+
+            unset($_SESSION['datos_cliente']);
+
+            if(empty($_SESSION['datos_cliente'])){
+                $alerta=[
+                    "Alerta"=>"recargar",
+                    "Titulo"=>"Datos removidos",
+                    "Texto"=>"Los datos del cliente han sido removidos del pedido",
+                    "Tipo"=>"success"
+                ];
+            }else{
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Ocurrio un error inesperado",
+                    "Texto"=>"No hemos podido remover los datos del cliente",
+                    "Tipo"=>"error"
+                ];
+            }
+            echo json_encode($alerta);
+
+
+        }/* Fin de del controlador */
+
+        /*-------- Controlador buscar producto Pedido --------*/
+        public function buscar_producto_pedido_controlador(){
+            
+            /*-------- recuperar el texto --------*/
+            $producto=mainModel::limpiar_cadena($_POST['buscar_producto']);
+            
+            /*-------- Comprobar campo vacio --------*/
+            
+            if($producto == ""){
+                return '<div class="alert alert-warning" role="alert">
+                <p class="text-center mb-0">
+                <i class="fas fa-exclamation-triangle fa-2x"></i><br>
+                Debes introducir el codigo o nombre del producto 
+                </p>
+                </div>';
+                exit();
+            }
+            
+            /*-------- Selecionando producto en la BD --------*/
+            $datos_producto=mainModel::ejecutar_consulta_simple("SELECT * FROM producto WHERE codigo_producto LIKE '%$producto%' OR nombre_producto LIKE '%$producto%' ORDER BY  codigo_producto DESC ");
+            
+            if($datos_producto->rowCount() >= 1  ){
+                $datos_producto= $datos_producto->fetchAll();
+                
+                $tabla='
+                <div class="table-responsive">
+                <table class="table table-hover table-bordered table-sm">
+                <tbody>
+                ';
+                
+                foreach( $datos_producto as $rows){
+                    $tabla.='
+                    <tr class="text-center">
+                    <td>'.$rows['codigo_producto'].'  -  '.$rows['nombre_producto'].'</td>
+                    <td>
+                    <button type="button" class="btn btn-primary" onclick="agregar_producto('.$rows['id_producto'].')" ><i class="fas fa-box-open"></i></button>
+                    </td>
+                    </tr>
+                    ';
+                }
+                
+                
+                
+                $tabla.='
+                </tbody>
+                </table>
+                </div>
+                ';
+                return $tabla;
+            }else{
+                return '<div class="alert alert-warning" role="alert">
+                <p class="text-center mb-0">
+                <i class="fas fa-exclamation-triangle fa-2x"></i><br>
+                No hemos encontrado ningún cliente en el sistema que coincida con <strong>“'.$producto.'”</strong>
+                </p>
+                </div>';
+                exit();
+            }
+        }/* Fin de del controlador */
     }

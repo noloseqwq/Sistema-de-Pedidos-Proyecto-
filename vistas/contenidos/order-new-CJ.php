@@ -11,18 +11,31 @@
 <div class="container-fluid">
     <div class="container-fluid form-neon">
         <div class="container-fluid">
-            <p class="text-center roboto-medium">AGREGAR CLIENTE O PRODUCTOS</p>
+            <p class="text-center roboto-medium">AGREGAR CLIENTE Y PRODUCTOS</p>
             <p class="text-center">
+                <?php if(empty($_SESSION['datos_cliente'])){ ?>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCliente"><i class="fas fa-user-plus"></i> &nbsp; Agregar cliente</button>
+                <?php } ?>
+
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar producto</button>
             </p>
             <div>
                 <span class="roboto-medium">CLIENTE:</span>
+
+                <?php if(empty($_SESSION['datos_cliente'])){ ?>
+
                 <span class="text-danger">&nbsp; <i class="fas fa-exclamation-triangle"></i> Seleccione un cliente</span>
-                <form action="" style="display: inline-block !important;">
-                    Carlos Alfaro
-                    <button type="button" class="btn btn-danger"><i class="fas fa-user-times"></i></button>
+                
+                <?php }else{ ?>
+
+                <form class=" FormularioAjax" action="<?php echo SERVER_URL ?>ajax/pedidoAjax.php" method="POST" data-form="order" style="display: inline-block !important;">
+                <input type="hidden" name="id_eliminar_cliente" value="<?php echo $_SESSION['datos_cliente']['ID'] ?>">
+                    <?php echo $_SESSION['datos_cliente']['RIF']." - ". $_SESSION['datos_cliente']['Razon'];?>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-user-times"></i></button>
                 </form>
+                
+                <?php } ?>
+
             </div>
             <div class="table-responsive">
                 <table class="table table-dark table-sm">
@@ -165,7 +178,7 @@
 </div>
 
 
-<!-- MODAL ITEM -->
+<!-- MODAL PRODUCTO -->
 <div class="modal fade" id="ModalItem" tabindex="-1" role="dialog" aria-labelledby="ModalItem" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -179,51 +192,15 @@
                 <div class="container-fluid">
                     <div class="form-group">
                         <label for="input_item" class="bmd-label-floating">Código, Nombre</label>
-                        <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}" class="form-control" name="input_producto" id="input_item" maxlength="30">
+                        <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}" class="form-control" name="input_producto" id="input_producto" maxlength="30">
                     </div>
                 </div>
                 <br>
-                <div class="container-fluid" id="tabla_items">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered table-sm">
-                            <tbody>
-                                <tr class="text-center">
-                                    <td>000000000000 - Nombre del Producto</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-box-open"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>000000000000 - Nombre del Producto</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-box-open"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>000000000000 - Nombre del Producto</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-box-open"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td>000000000000 - Nombre del Producto</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-box-open"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="alert alert-warning" role="alert">
-                    <p class="text-center mb-0">
-                        <i class="fas fa-exclamation-triangle fa-2x"></i><br>
-                        No hemos encontrado ningún Producto en el sistema que coincida con <strong>“Busqueda”</strong>
-                    </p>
+                <div class="container-fluid" id="tabla_productos"  >
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar</button>
+                <button type="button" class="btn btn-primary" onclick="buscar_producto()"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar</button>
                 &nbsp; &nbsp;
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>

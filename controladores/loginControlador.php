@@ -193,7 +193,7 @@
                 echo '<script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
-                    text: "Alguna de las respuestas es incorecctas",
+                    text: "Alguna de las respuestas es incorectas",
                     type: "error",
                     confirmButtonText: "Aceptar"
                 });
