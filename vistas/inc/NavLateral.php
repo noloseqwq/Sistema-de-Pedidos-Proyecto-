@@ -41,9 +41,6 @@
                             <a href="<?php echo SERVER_URL; ?>order-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Pedido</a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>order-list/"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Pedidos</a>
-                        </li>
-                        <li>
                             <a href="<?php echo SERVER_URL; ?>order-search/"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar Pedidos</a>
                         </li>
                     </ul>

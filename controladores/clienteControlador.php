@@ -167,7 +167,8 @@
                         <th>RIF</th>
                         <th>RAZÓN SOCIAL</th>
                         <th>TELEFONO</th>
-                        <th>DIRECCIÓN</th>';
+                        <th>DIRECCIÓN</th>
+                        <th>PEDIDOS</th>';
                         
                         if($privilegio == 1 || $privilegio == 2){
                             $tabla.='<th>ACTUALIZAR</th>';
@@ -191,7 +192,13 @@
                     <td>'.$rows['cliente_razon'].'</td>
 
                     <td>'.$rows['cliente_tlf'].'</td>
-                    <td>'.$rows['cliente_direccion'].'</td>';
+                    <td>'.$rows['cliente_direccion'].'</td>
+                    <td>
+                        <a href="'.SERVER_URL.'client-order-list/'.mainModel::encryption($rows['id_cliente']).'/" class="btn btn-info">
+                        <i class="fas fa-clipboard-list fa-fw"></i>
+                        </a>
+                    </td>
+                    ';
 
                     if($privilegio == 1 || $privilegio == 2){
                         $tabla.='<td>

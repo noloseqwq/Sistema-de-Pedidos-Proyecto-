@@ -21,7 +21,7 @@
         </div>
     </a>
 
-    <a href="<?php echo SERVER_URL; ?>order-list/" class="tile">
+    <a href="<?php echo SERVER_URL; ?>order-new/" class="tile">
         <div class="tile-tittle">Pedidos</div>
         <div class="tile-icon">
             <i class="fas fa-clipboard-list fa-fw"></i>

@@ -126,8 +126,24 @@
 
             $usuario = mainModel::limpiar_cadena($dato);
 
+            if($usuario == ""){
+                echo '
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "Campos vacios",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+
             if(mainModel::verificar_datos("[a-zA-Z0-9]{3,35}",$usuario)){
-                echo '<script>
+                echo '
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
                     text: "El Usuario no coincide con el formato solicitado",
@@ -142,7 +158,9 @@
 
 
             if($check_user->rowCount() < 1){
-                echo'<script>
+                echo'
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
                     text: "No se encontro al usuario en el sistema",
@@ -151,6 +169,7 @@
                 });
                 </script>';
                 exit();
+
             }
             return $check_user;
         }/*Fin del controlador */
@@ -162,8 +181,24 @@
             $respuesta2=mainModel::limpiar_cadena($datos['Respuesta2']);
             $usuario=mainModel::limpiar_cadena($datos['Usuario']);
 
+            if($respuesta1 == "" || $respuesta2 == "" || $usuario == ""){
+                echo '
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "Campos vacios",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+
             if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$respuesta1)){
-                echo '<script>
+                echo '
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
                     text: "La respuesta N°1 no coincide con el formato solicitado",
@@ -175,7 +210,9 @@
             }
 
             if(mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ?]{3,100}",$respuesta2)){
-                echo '<script>
+                echo '
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
                     text: "La respuesta N°2 no coincide con el formato solicitado",
@@ -190,7 +227,9 @@
             $check_respuesta=mainModel::ejecutar_consulta_simple("SELECT * FROM usuarios WHERE usuario='$usuario' AND respuesta1='$respuesta1' AND respuesta2='$respuesta2'");
 
             if($check_respuesta->rowCount() < 1){
-                echo '<script>
+                echo '
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
                     text: "Alguna de las respuestas es incorectas",
@@ -210,6 +249,18 @@
             $usuario = mainModel::limpiar_cadena($_POST['usuario_rec']);
             $clave = mainModel::limpiar_cadena($_POST['clave_rec']);
 
+            if($clave=="" || $usuario ==""){
+                echo '<script>
+                Swal.fire({
+                    title: "Ocurrio un error inesperado",
+                    text: "Campos vacios",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+                exit();
+            }
+
             if(mainModel::verificar_datos("[a-zA-Z0-9]{3,35}",$usuario)){
                 echo '<script>
                 Swal.fire({
@@ -223,7 +274,9 @@
 
             }
             if(mainModel::verificar_datos("[a-zA-Z0-9$@.\-]{7,100}",$clave)){
-                echo '<script>
+                echo '
+
+                <script>
                 Swal.fire({
                     title: "Ocurrio un error inesperado",
                     text: "La clave no coincide con el formato solicitado",
@@ -260,6 +313,22 @@
                 
                 </script>';
 
+            }else{
+                echo'
+                <button type="submit" class="btn btn-login btn-info">Siguiente</button>
+                <script>
+                
+                Swal.fire({
+                    title:"Ocurrio un error insesperado",
+                    text: "No se pudo actualizar la contraseña",
+                    type: "error",
+                    confirmButtonText: "Aceptar"
+                
+                });
+                
+                
+                </script>';
+                exit();
             }
 
             

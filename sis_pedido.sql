@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2024 a las 15:29:28
+-- Tiempo de generación: 21-05-2024 a las 04:42:11
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -122,7 +122,18 @@ INSERT INTO `producto` (`id_producto`, `codigo_producto`, `nombre_producto`, `de
 (1, 'MB8', 'Manga Blanca Clase A #8', ''),
 (2, 'MB10', 'Manga Blanca Clase A #10', ''),
 (3, 'KMD', 'Kit con 3 Mangas Desechable', 'Con tres boquillas, un acople y tres mangas desechable'),
-(4, 'KMA21', 'Kit de Manga Amarilla #21 para churro', 'Trae un a manga amarilla # 21, una boquilla grande 14B y la receta de churro');
+(4, 'KMA21', 'Kit de Manga Amarilla #21 para churro', 'Trae un a manga amarilla # 21, una boquilla grande 14B y la receta de churro'),
+(7, 'MB12', 'Manga Blanca Clase A #12', ''),
+(8, 'MB14', 'Manga Blanca Clase A #14', ''),
+(9, 'MB16', 'Manga Blanca Clase A #16', ''),
+(10, 'MB18', 'Manga Blanca Clase A #18', ''),
+(11, 'MD10', 'Manga Desechable #20', ''),
+(12, 'MD12', 'Manga Desechable #12', ''),
+(13, 'MD14', 'Manga Desechable #14', ''),
+(14, 'MD16', 'Manga Desechable #16', ''),
+(15, 'MD18', 'Manga Desechable #18', ''),
+(16, 'MD22', 'Manga Desechable #22', ''),
+(17, 'KMB10', 'Kit de Manga Blanca Clase A #10', 'con tres boquillas, un acople y una mangas');
 
 -- --------------------------------------------------------
 
@@ -232,7 +243,7 @@ ALTER TABLE `persona`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

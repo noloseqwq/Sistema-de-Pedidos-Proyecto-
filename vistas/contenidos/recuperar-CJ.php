@@ -60,7 +60,10 @@
                                                                         }?> maxlength="100" required>
                                                 </div>
                                             </div>
-                                    <?php }
+                                    <?php }else{?>
+                                        
+                                    <?php
+                                    }
                                     } ?>
 
                                     <?php
