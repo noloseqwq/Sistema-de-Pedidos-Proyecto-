@@ -102,7 +102,7 @@ class mainModel{
     /*-------- Funcion verificar fechas --------*/
     protected static function verificar_fechas($fecha){
         $valores = explode('-', $fecha);
-        if (count($valores) == 3 && checkdate($valores[1], $valores[2], $valores[0])) {
+        if (count($valores) == 3 && checkdate($valores[0], $valores[1], $valores[2] )) {
             return false;
         } else {
             return true;

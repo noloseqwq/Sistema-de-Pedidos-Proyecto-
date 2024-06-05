@@ -34,7 +34,7 @@
         $('#ModalCliente').modal('hide');
         Swal.fire({
             title: '¿Quieres agregar este cliente?',
-            text: 'Se va a agregar este cliente para un prestamo ',
+            text: 'Se va a agregar este cliente al pedido',
             type: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -88,4 +88,23 @@
             });
         }
     }
+
+    /*-------- modales del producto --------*/
+    function modal_agregar_producto(id) {
+        $('#ModalProducto').modal('hide');
+        $('#ModalAgregarProducto').modal('show');
+
+        document.querySelector('#id_agregar_producto').setAttribute("value", id);
+
+    }
+
+    function modal_buscar_producto(id){
+        $('#ModalAgregarProducto').modal('hide');
+        $('#ModalProducto').modal('show');
+        
+        document.querySelector('#id_agregar_producto').setAttribute("value",id);
+    }
+
+
+
 </script>

@@ -256,7 +256,7 @@
                 $alerta=[
                     "Alerta"=>"simple",
                     "Titulo"=>"Ocurrio un error inesperado",
-                    "Texto"=>"No tienes los permisos necesarios para eliminar un cliente",
+                    "Texto"=>"No tienes los permisos necesarios para eliminar un producto",
                     "Tipo"=>"error"
                 ];
                 echo json_encode($alerta);
@@ -268,7 +268,7 @@
             if($eliminar_producto->rowCount()==1){
                 $alerta=[
                     "Alerta"=>"recargar",
-                    "Titulo"=>"Cliente Eliminado",
+                    "Titulo"=>"Producto Eliminado",
                     "Texto"=>"El Producto ha sido eliminado de manera exitosa",
                     "Tipo"=>"success"
                 ];
@@ -427,7 +427,7 @@
                 $alerta=[
                     "Alerta"=>"recargar",
                     "Titulo"=>"producto Actualizado",
-                    "Texto"=>"Los datos del producto han sido actualizado con excito",
+                    "Texto"=>"Los datos del producto han sido actualizado con exito",
                     "Tipo"=>"success"
                 ];
             }else{

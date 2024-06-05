@@ -846,7 +846,7 @@ color: #ffffff;
 .cliente{
 	float: left;
 	padding: 10px;
-	width: 500px;
+	width: 450px;
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
 	background-color: rgb(255, 255, 255);
@@ -862,7 +862,7 @@ color: #ffffff;
 .pedidos-cliente{
 	float: right;
 	padding: 10px;
-	width: 800px;
+	width: 680px;
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
 	background-color: rgb(255, 255, 255);

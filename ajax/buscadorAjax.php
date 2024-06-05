@@ -49,7 +49,7 @@ if(isset($_POST['busqueda_inicial']) || isset($_POST['eliminar_busqueda']) || is
                 echo json_encode($alerta);
                 exit();
             }
-            $_SESSION[$fecha_creacion]= $_POST['fecha_creacion'];
+            $_SESSION[$fecha_creacion]= date("d-m-Y", strtotime($_POST['fecha_creacion']));
         }
 
         /*Eliminar busqueda*/        

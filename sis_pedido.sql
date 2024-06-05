@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2024 a las 04:42:11
+-- Tiempo de generación: 27-05-2024 a las 04:35:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -163,7 +163,7 @@ INSERT INTO `usuarios` (`id_usuario`, `usuario`, `email`, `clave`, `privilegio`,
 (81, 'rosa', 'rosamaricampe@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 1, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
 (82, 'caiman', 'gabrieljesusperdomo@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 2, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
 (83, 'isabela', 'andre_isabel@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 1, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
-(84, 'noloseqwq', 'gabrieldjesusperdomo@gmail.com', 'SVdaeUFlc0ZmbDVDd0lMZXJzU3BiZz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
+(84, 'noloseqwq', 'gabrieldjesusperdomo@gmail.com', 'OExRUzJiNGdXbjNWWXpWa21jUDE4Zz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
 (85, 'mely', 'josmely15@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
 (86, 'mora', 'moradolid@gmail.com', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 3, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris'),
 (87, 'skaskj', 'asd@sa.qde', 'bktUOUc0Wjd3MUVGN2JkUWZleDBNZz09', 2, 'Lugar Favorito?', 'Pais Favorito?', 'paseo', 'Paris');

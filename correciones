@@ -20,3 +20,5 @@
         p = Pasaporte
         e = extranjero
         m = ???
+
+        (SELECT SQL_CALC_FOUND_ROWS * FROM pedido WHERE id_client='3' ORDER BY fecha_pedido  ) mas adelante la uso 

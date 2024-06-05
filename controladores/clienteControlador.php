@@ -267,7 +267,7 @@
             }
 
             //Comprobar pedido
-            $check_pedidos= mainModel::ejecutar_consulta_simple("SELECT id_cliente FROM pedido WHERE id_cliente='$id' LIMIT 1");
+            $check_pedidos= mainModel::ejecutar_consulta_simple("SELECT id_client FROM pedido WHERE id_client='$id' AND estado_pedido='Pendiente' LIMIT 1");
             if($check_pedidos->rowCount()>0){
                 $alerta=[
                     "Alerta"=>"simple",

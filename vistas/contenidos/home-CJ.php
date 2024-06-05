@@ -21,11 +21,16 @@
         </div>
     </a>
 
+    <?php
+    require_once "./controladores/pedidoControlador.php";
+    $ins_pedido= new pedidoControlador();
+    $total_pedidos=$ins_pedido->datos_pedido_controlador("Conteo",0)
+    ?>
     <a href="<?php echo SERVER_URL; ?>order-new/" class="tile">
         <div class="tile-tittle">Pedidos</div>
         <div class="tile-icon">
             <i class="fas fa-clipboard-list fa-fw"></i>
-            <p>9 Registrados</p>
+            <p> <?php echo $total_pedidos->rowCount()?> Registrados</p>
         </div>
     </a>
     <?php 

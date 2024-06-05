@@ -2,195 +2,83 @@
     <h3 class="text-left">
         <i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PEDIDO
     </h3>
-    <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
-    </p>
 </div>
 
 <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs">
-                    <li>
-                        <a href="<?php echo SERVER_URL; ?>order-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PEDIDO</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo SERVER_URL; ?>order-search/"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PEDIDO</a>
-                    </li>
-                </ul>
-            </div>
+    <ul class="full-box list-unstyled page-nav-tabs">
+        <li>
+            <a href="<?php echo SERVER_URL; ?>order-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PEDIDO</a>
+        </li>
+        <li>
+            <a href="<?php echo SERVER_URL; ?>pending-order-list/"><i class="fas fa-hourglass-half"></i> &nbsp; PEDIDOS PENDIENTES</a>
+        </li>
+        <li>
+            <a href="<?php echo SERVER_URL; ?>placed-order-list/"><i class="fas fa-clipboard-check"></i> &nbsp; PEDIDOS REALIZADOS</a>
+        </li>
+        <li>
+            <a class="active" href="<?php echo SERVER_URL; ?>order-search/"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PEDIDO</a>
+        </li>
+    </ul>
+</div>
+<?php
+if (!isset($_SESSION['fecha_creacion_pedido']) && empty($_SESSION['fecha_creacion_pedido'])) {
+?>
+    <div class="container-fluid">
+        <form class="form-neon FormularioAjax" action="<?php echo SERVER_URL; ?>ajax/buscadorAjax.php" method="POST" data-form="default" autocomplete="off">
+            <input type="hidden" name="modulo" value="pedido">
 
-<div class="container-fluid">
-    <form class="form-neon" action="">
-        <div class="container-fluid">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-md-4">
-                    <div class="form-group">
-                        <label for="busqueda_creacion_pedido">Fecha de creacion (día/mes/año)</label>
-                        <input type="date" class="form-control" name="fecha_creacion" id="busqueda_creacion_pedido" maxlength="30">
+            <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label for="busqueda_creacion_pedido">Fecha de creacion (día/mes/año)</label>
+                            <input type="date" class="form-control" name="fecha_creacion" id="busqueda_creacion_pedido" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-center" style="margin-top: 40px;">
+                            <button type="submit" class="btn btn-raised btn-info"><i class="fas fa-search"></i> &nbsp; BUSCAR</button>
+                        </p>
                     </div>
                 </div>
-                <div class="col-12">
-                    <p class="text-center" style="margin-top: 40px;">
-                        <button type="submit" class="btn btn-raised btn-info"><i class="fas fa-search"></i> &nbsp; BUSCAR</button>
-                    </p>
-                </div>
             </div>
-        </div>
-    </form>
-</div>
-
-
-<div class="container-fluid">
-    <form action="">
-        <input type="hidden" name="eliminar_busqueda" value="eliminar">
-        <div class="container-fluid">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-md-6">
-                    <p class="text-center" style="font-size: 20px;">
-                        Fecha de busqueda: <strong>01/01/2020 &nbsp; a &nbsp; 01/01/2020</strong>
-                    </p>
-                </div>
-                <div class="col-12">
-                    <p class="text-center" style="margin-top: 20px;">
-                        <button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-<div class="container-fluid">
-    <div class="table-responsive">
-        <table class="table table-dark table-sm">
-            <thead>
-                <tr class="text-center roboto-medium">
-                    <th>#</th>
-                    <th>CLIENTE</th>
-                    <th>FECHA DE PRÉSTAMO</th>
-                    <th>FECHA DE ENTREGA</th>
-                    <th>TIPO</th>
-                    <th>ESTADO</th>
-                    <th>FACTURA</th>
-                    <th>ACTUALIZAR</th>
-                    <th>ELIMINAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center">
-                    <td>1</td>
-                    <td>NOMBRE CLIENTE</td>
-                    <td>2017/10/8</td>
-                    <td>2017/10/10</td>
-                    <td><span class="badge badge-warning">Reservacion</span></td>
-                    <td><span class="badge badge-danger">Pendiente</span></td>
-                    <td>
-                        <a href="#" class="btn btn-info">
-                            <i class="fas fa-file-pdf"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="reservation-update.html" class="btn btn-success">
-                            <i class="fas fa-sync-alt"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <form action="">
-                            <button type="button" class="btn btn-warning">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr class="text-center">
-                    <td>2</td>
-                    <td>NOMBRE CLIENTE</td>
-                    <td>2017/10/8</td>
-                    <td>2017/10/10</td>
-                    <td><span class="badge badge-dark">Finalizado</span></td>
-                    <td><span class="badge badge-primary">Cancelado</span></td>
-                    <td>
-                        <a href="#" class="btn btn-info">
-                            <i class="fas fa-file-pdf"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="reservation-update.html" class="btn btn-success">
-                            <i class="fas fa-sync-alt"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <form action="">
-                            <button type="button" class="btn btn-warning">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr class="text-center">
-                    <td>3</td>
-                    <td>NOMBRE CLIENTE</td>
-                    <td>2017/10/8</td>
-                    <td>2017/10/10</td>
-                    <td><span class="badge badge-info">Prestamo</span></td>
-                    <td><span class="badge badge-danger">Pendiente</span></td>
-                    <td>
-                        <a href="#" class="btn btn-info">
-                            <i class="fas fa-file-pdf"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="reservation-update.html" class="btn btn-success">
-                            <i class="fas fa-sync-alt"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <form action="">
-                            <button type="button" class="btn btn-warning">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr class="text-center">
-                    <td>4</td>
-                    <td>NOMBRE CLIENTE</td>
-                    <td>2017/10/8</td>
-                    <td>2017/10/10</td>
-                    <td><span class="badge badge-dark">Finalizado</span></td>
-                    <td><span class="badge badge-primary">Cancelado</span></td>
-                    <td>
-                        <a href="#" class="btn btn-info">
-                            <i class="fas fa-file-pdf"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="reservation-update.html" class="btn btn-success">
-                            <i class="fas fa-sync-alt"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <form action="">
-                            <button type="button" class="btn btn-warning">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        </form>
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
-</div>
+<?php
+} else {
+?>
+
+    <div class="container-fluid">
+        <form class="FormularioAjax" action="<?php echo SERVER_URL; ?>ajax/buscadorAjax.php" method="POST" data-form="search" autocomplete="off">
+            <input type="hidden" name="modulo" value="pedido">
+            <input type="hidden" name="eliminar_busqueda" value="eliminar">
+            <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-6">
+                        <p class="text-center" style="font-size: 20px;">
+                            Fecha de busqueda: <?php echo $_SESSION['fecha_creacion_pedido'] ?> <strong> </strong>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-center" style="margin-top: 20px;">
+                            <button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container-fluid">
+        <?php
+
+        require_once "./controladores/pedidoControlador.php";
+        $ins_pedidoTab = new pedidoControlador();
+
+        echo $ins_pedidoTab->paginador_pedido_controlador($pagina[1], 8, $_SESSION['privilegio_sdp'], $pagina[0], "Busquedad", $_SESSION['fecha_creacion_pedido']);
+
+
+        ?>
+    </div>
+<?php } ?>
