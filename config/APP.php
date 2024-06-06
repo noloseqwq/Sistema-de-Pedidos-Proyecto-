@@ -3,6 +3,9 @@
 
     const COMPANY="Distrimang";
 
+    const BACKUP_PATH = "../backup/";
+
+
     date_default_timezone_set("America/Caracas");
 
     // Prueba 
