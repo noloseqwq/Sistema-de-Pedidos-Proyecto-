@@ -7,9 +7,9 @@
 
         -hacer la recuperacion de contraseña (listo)
         -hacer el modulo de productos(listo)
-        ->Hacer la vista para los pedidos por cliente
-        ->hacer el modulo de pedidos
-        ->acomodar la tabla de productos en el modal 
+        ->Hacer la vista para los pedidos por cliente (listo)
+        ->hacer el modulo de pedidos(listo)
+        ->acomodar la tabla de productos en el modal(casi listo) 
         ->Colocar que tipo de persona es el del rif, si es judirica y ese tipo de cosas
         ->hacer que actualice algunas partes del cliente, tu sabes que.  
         
@@ -21,4 +21,3 @@
         e = extranjero
         m = ???
 
-        (SELECT SQL_CALC_FOUND_ROWS * FROM pedido WHERE id_client='3' ORDER BY fecha_pedido  ) mas adelante la uso 

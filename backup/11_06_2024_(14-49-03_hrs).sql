@@ -13,12 +13,13 @@ CREATE TABLE `cliente` (
   `cliente_razon` varchar(250) NOT NULL,
   `cliente_direccion` varchar(250) NOT NULL,
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO cliente VALUES("1","11111111","04123654789","Surtigranos","Av Libertador");
 INSERT INTO cliente VALUES("5","545456456","04123654749","TucheMarket","Av rotaria");
 INSERT INTO cliente VALUES("6","64545456","01256789634","Sweet Cristal","Av Republica");
 INSERT INTO cliente VALUES("7","56544658","04245687568","WAOS COMP","sabanita");
+INSERT INTO cliente VALUES("8","54646654","232132332123","asdasda","dasdas5da61sd21as");
 
 
 
@@ -26,25 +27,29 @@ DROP TABLE IF EXISTS detalle_pedido;
 
 CREATE TABLE `detalle_pedido` (
   `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_proc` varchar(50) DEFAULT NULL,
   `producto_nombre` varchar(250) NOT NULL,
   `cantidad_detalle` varchar(250) NOT NULL,
   `pedido_codigo` varchar(250) NOT NULL,
   PRIMARY KEY (`id_detalle`),
   KEY `pedido_codigo` (`pedido_codigo`),
   CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido_codigo`) REFERENCES `pedido` (`codigo_pedido`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO detalle_pedido VALUES("28","Manga Blanca Clase A #16","12","CJ9274053-1");
-INSERT INTO detalle_pedido VALUES("29","Manga Blanca Clase A #14","24","CJ8498494-2");
-INSERT INTO detalle_pedido VALUES("30","Manga Blanca Clase A #8","15","CJ8498494-2");
-INSERT INTO detalle_pedido VALUES("31","Kit de Manga Blanca Clase A #10","32","CJ8498494-2");
-INSERT INTO detalle_pedido VALUES("32","Kit de Manga Amarilla #21 para churro","5","CJ2507620-3");
-INSERT INTO detalle_pedido VALUES("33","Manga Blanca Clase A #18","4","CJ8469229-4");
-INSERT INTO detalle_pedido VALUES("34","Manga Blanca Clase A #8","5","CJ8469229-4");
-INSERT INTO detalle_pedido VALUES("35","Manga Desechable #12","2","CJ4162715-5");
-INSERT INTO detalle_pedido VALUES("36","Kit con 3 Mangas Desechable","3","CJ9279045-6");
-INSERT INTO detalle_pedido VALUES("37","Manga Desechable #14","32","CJ6554385-7");
-INSERT INTO detalle_pedido VALUES("38","Manga Blanca Clase A #12","23","CJ2583283-8");
+INSERT INTO detalle_pedido VALUES("28","","Manga Blanca Clase A #16","12","CJ9274053-1");
+INSERT INTO detalle_pedido VALUES("29","","Manga Blanca Clase A #14","24","CJ8498494-2");
+INSERT INTO detalle_pedido VALUES("30","","Manga Blanca Clase A #8","15","CJ8498494-2");
+INSERT INTO detalle_pedido VALUES("31","","Kit de Manga Blanca Clase A #10","32","CJ8498494-2");
+INSERT INTO detalle_pedido VALUES("32","","Kit de Manga Amarilla #21 para churro","5","CJ2507620-3");
+INSERT INTO detalle_pedido VALUES("33","","Manga Blanca Clase A #18","4","CJ8469229-4");
+INSERT INTO detalle_pedido VALUES("34","","Manga Blanca Clase A #8","5","CJ8469229-4");
+INSERT INTO detalle_pedido VALUES("35","","Manga Desechable #12","2","CJ4162715-5");
+INSERT INTO detalle_pedido VALUES("36","","Kit con 3 Mangas Desechable","3","CJ9279045-6");
+INSERT INTO detalle_pedido VALUES("37","","Manga Desechable #14","32","CJ6554385-7");
+INSERT INTO detalle_pedido VALUES("38","","Manga Blanca Clase A #12","23","CJ2583283-8");
+INSERT INTO detalle_pedido VALUES("39","KMD","Kit con 3 Mangas Desechable","12","CJ2466260-10");
+INSERT INTO detalle_pedido VALUES("40","MB16","Manga Blanca Clase A #16","22","CJ2466260-10");
+INSERT INTO detalle_pedido VALUES("41","MB16","Manga Blanca Clase A #16","12","CJ2425648-10");
 
 
 
@@ -61,7 +66,7 @@ CREATE TABLE `pedido` (
   UNIQUE KEY `codigo_pedido` (`codigo_pedido`) USING BTREE,
   KEY `cliente` (`id_client`),
   CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO pedido VALUES("44","CJ9274053-1","12","Realizado","2024-06-05","5");
 INSERT INTO pedido VALUES("45","CJ8498494-2","71","Pendiente","2024-06-05","6");
@@ -69,8 +74,10 @@ INSERT INTO pedido VALUES("46","CJ2507620-3","5","Pendiente","2024-06-01","6");
 INSERT INTO pedido VALUES("47","CJ8469229-4","9","Pendiente","2024-06-03","6");
 INSERT INTO pedido VALUES("48","CJ4162715-5","2","Pendiente","2024-06-04","6");
 INSERT INTO pedido VALUES("49","CJ9279045-6","3","Pendiente","2024-06-04","6");
-INSERT INTO pedido VALUES("50","CJ6554385-7","32","Pendiente","2024-06-04","6");
+INSERT INTO pedido VALUES("50","CJ6554385-7","32","Realizado","2024-06-04","6");
 INSERT INTO pedido VALUES("51","CJ2583283-8","23","Pendiente","2024-06-04","6");
+INSERT INTO pedido VALUES("53","CJ2466260-10","34","Pendiente","2024-06-08","1");
+INSERT INTO pedido VALUES("54","CJ2425648-10","12","Pendiente","2024-06-09","6");
 
 
 

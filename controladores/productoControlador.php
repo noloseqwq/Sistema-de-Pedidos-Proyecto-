@@ -138,7 +138,7 @@
             if(isset($busqueda) && $busqueda!=""){
                 $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM producto WHERE codigo_producto LIKE '%$busqueda%' OR nombre_producto LIKE '%$busqueda%' ORDER BY codigo_producto DESC LIMIT $inicio, $registros";
             }else{
-                $consulta="SELECT  * FROM producto ORDER BY codigo_producto DESC LIMIT $inicio, $registros";
+                $consulta="SELECT SQL_CALC_FOUND_ROWS * FROM producto ORDER BY codigo_producto DESC LIMIT $inicio, $registros";
             }
 
             $conexion= mainModel::conectar();

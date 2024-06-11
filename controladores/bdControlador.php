@@ -64,20 +64,47 @@ class bdControlador extends bdModelo{
             }
 
             if ($error == 1) {
-                echo 'Ocurrio un error inesperado al crear la copia de seguridad';
+                $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"ERROR 011",
+                    "Texto"=>"No se pudo hacer la copia de seguridad",
+                    "Tipo"=>"error"
+                ];
+                echo json_encode($alerta);
+                exit();
             } else {
                 chmod(BACKUP_PATH, 0777);
                 $sql .= 'SET FOREIGN_KEY_CHECKS=1;';
                 $handle = fopen(BACKUP_PATH . $DataBASE, 'w+');
                 if (fwrite($handle, $sql)) {
                     fclose($handle);
-                    echo"fino señores ";
+                    $alerta=[
+                        "Alerta"=>"recargar",
+                        "Titulo"=>"Operacion exitosa",
+                        "Texto"=>"Se a realizado la copia de seguridad corectamente!",
+                        "Tipo"=>"success"
+                    ];
+                    echo json_encode($alerta);
                 } else {
-                    echo 'Ocurrio un error inesperado al crear la copia de seguridad';
+                    $alerta=[
+                        "Alerta"=>"simple",
+                        "Titulo"=>"ERROR 012",
+                        "Texto"=>"No se pudo hacer la copia de seguridad",
+                        "Tipo"=>"error"
+                    ];
+                    echo json_encode($alerta);
+                    exit();
                 }
             }
         } else {
-            echo 'Ocurrio un error inesperado';
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"ERROR 013",
+                "Texto"=>"No se pudo hacer la copia de seguridad",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
         }
     }
 
@@ -100,10 +127,21 @@ class bdControlador extends bdModelo{
         $conn->query("SET FOREIGN_KEY_CHECKS=1");
 
         if ($totalErrors <= 0) {
-            echo "fino";
-
+            $alerta=[
+                    "Alerta"=>"simple",
+                    "Titulo"=>"Restauracion exitosa",
+                    "Texto"=>"Se pudo reaclizar la restauraion de los datos del sistema!",
+                    "Tipo"=>"success"
+                ];
         } else {
-            echo "Ocurrio un error inesperado, no se pudo hacer la restauración completamente";
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrio un error inesperado",
+                "Texto"=>"No se pudo hacer la restauracion de los datos del sistema",
+                "Tipo"=>"error"
+            ];
+    
         }
+        echo json_encode($alerta);
     }
 }

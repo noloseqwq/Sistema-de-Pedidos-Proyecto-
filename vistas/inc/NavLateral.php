@@ -41,11 +41,17 @@
                             <a href="<?php echo SERVER_URL; ?>order-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Pedido</a>
                         </li>
                         <li>
+                            <a href="<?php echo SERVER_URL; ?>pending-order-list/"><i class="fas fa-hourglass-half"></i> &nbsp; Pedidos Pedientes</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo SERVER_URL; ?>placed-order-list/"><i class="fas fa-clipboard-check"></i> &nbsp; Pedidos Realizados</a>
+                        </li>
+                        <li>
                             <a href="<?php echo SERVER_URL; ?>order-search/"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar Pedidos</a>
                         </li>
                     </ul>
                 </li>
-    
+
                 <li>
                     <div class="list__button--click">
                         <a href="#" class="nav-btn-submenu"><i class="fas fa-boxes fa-fw"></i> &nbsp; Productos <i class="fas fa-chevron-right list__arrow"></i></a>
@@ -82,7 +88,20 @@
                         </ul>
                     </li>
                 <?php } ?>
-                
+
+                <?php if ($_SESSION['privilegio_sdp'] == 1) {
+                ?>
+                    <li>
+                        
+                            <div class="list__button">
+                                <a href="<?php echo SERVER_URL; ?>restore/" class=""><i class="fas fa-database"></i> &nbsp; Base de datos</a>
+                            </div>
+
+
+                    </li>
+                <?php } ?>
+
+
             </ul>
         </nav>
     </div>

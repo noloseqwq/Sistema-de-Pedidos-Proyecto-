@@ -21,17 +21,21 @@ function enviar_formulario_ajax(e) {
     let texto_alerta;
 
     if (tipo === "save") {
-        texto_alerta = "Los datos se guardaran en el sistema patron";
+        texto_alerta = "Los datos se guardaran en el sistema ";
     } else if (tipo === "delete") {
-        texto_alerta = "Los datos seran eliminados patron";
+        texto_alerta = "Los datos seran eliminados ";
     } else if (tipo === "update") {
-        texto_alerta = "Los datos del sistema seran actualizados patron";
+        texto_alerta = "Los datos del sistema seran actualizados ";
     } else if (tipo === "search") {
-        texto_alerta = "Se eliminara el termino de busquedad y tendras que escribir uno nuevo.... Patron";
+        texto_alerta = "Se eliminara el termino de busquedad y tendras que escribir uno nuevo.... ";
     } else if (tipo === "order") {
-        texto_alerta = "Desea eliminar los datos del pedido patron?";
+        texto_alerta = "Desea eliminar los datos del pedido ?";
+    }else if (tipo === "backup") {
+        texto_alerta = "Quieres realizar una copia de seguridad a la informacion del sistema?";
+    }else if (tipo === "restore") {
+        texto_alerta = "Quieres realizar hacer una restauracion de los datos del sistema ?";
     } else {
-        texto_alerta = "Quieres realizar la operacion solicitada? patron"
+        texto_alerta = "Quieres realizar la operacion solicitada? "
     }
 
     Swal.fire({

@@ -867,5 +867,34 @@ color: #ffffff;
 	border-radius: 10px;
 	background-color: rgb(255, 255, 255);
 	margin: 40px 10px ;
+}
 
+/* Estilo de PDF*/
+
+.logo{
+	max-width: 30pc;
+	float: left;
+}
+
+.datos-cliente{
+	float: right;
+	margin: 2.5% 2%;
+}
+
+.datos-cliente h5{
+	font: 1.4em serif;
+	
+}
+.tabla-pdf{
+	table-layout: fixed;
+    word-wrap: break-word;	
+}
+
+.td_pdf{
+border: 1px solid !important;
+}
+
+.base{
+	display: flex;
+	justify-content: center;
 }

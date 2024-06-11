@@ -18,14 +18,11 @@
             echo $ins_bd->restore_bd_controlador();
         }
 
-        
-
-
-
 
     }else{
-        session_start(['name' => 'SDP']);
+        /* session_start(['name' => 'SDP']);
         session_unset();
         session_destroy();
-        header("Location: ".SERVER_URL."login/");
+        header("Location: ".SERVER_URL."login/");*/
+        echo "a";
     }

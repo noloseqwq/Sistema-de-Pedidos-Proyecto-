@@ -443,6 +443,7 @@
             foreach($_SESSION['datos_producto'] as $productos){
 
                 $datos_detalle_reg=[
+                    "COD" => $productos['COD'],
                     "Producto"=>$productos['Nombre'],
                     "Cantidad"=>$productos['Cantidad'],
                     "Codigo"=>$codigo
@@ -561,7 +562,7 @@
 
                     <td>'.date("d-m-Y", strtotime($rows['fecha_pedido'])).'</td>
                     <td>
-                            <a href="'.SERVER_URL.'pedidos/pedido.php?id='.mainModel::encryption($rows['id_pedido']).'" class=" btn btn-danger" target="_blank">
+                            <a href="'.SERVER_URL.'pedidos/pedido.php?id_cliente='.mainModel::encryption($rows['id_client']).'&cod='.mainModel::encryption($rows['codigo_pedido']).'" class=" btn btn-danger" target="_blank">
                                     <i class="fas fa-file-pdf"></i>
                             </a>
                     </td>
@@ -849,7 +850,7 @@
 
                     <td>'.date("d-m-Y", strtotime($rows['fecha_pedido'])).'</td>
                     <td>
-                            <a href="'.SERVER_URL.'pedidos/pedido.php?id='.mainModel::encryption($rows['id_pedido']).'" class=" btn btn-danger" target="_blank">
+                            <a href="'.SERVER_URL.'pedidos/pedido.php?id_cliente='.mainModel::encryption($rows['id_client']).'&cod='.mainModel::encryption($rows['codigo_pedido']).'" class=" btn btn-danger" target="_blank">
                                     <i class="fas fa-file-pdf"></i>
                             </a>
                     </td>
